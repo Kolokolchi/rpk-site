@@ -1,3 +1,0 @@
-Montserrat
-Source: https://fonts.google.com/specimen/Montserrat
-License: https://raw.githubusercontent.com/google/fonts/main/ofl/montserrat/OFL.txt
