@@ -1,0 +1,16 @@
+node_modules/
+build/
+dist/
+coverage/
+.next/
+test-results/
+playwright-report/
+*.tsbuildinfo
+/artifacts/migration/
+.DS_Store
+*.log
+.env*
+!.env.example
+/data/site-content.json
+/data/media/
+/data/*.lock/
