@@ -3,12 +3,16 @@ import CatalogPage from "../../../../catalog/CatalogPage";
 import {
   findCatalogEntry,
   catalogHref,
+  catalogIndex,
 } from "../../../../shared/catalog-index";
 import { whatsappLink } from "../../../../components/site/site-utils";
 import { publicSnapshot } from "../../../site-snapshot";
-import { pageMetadata, StructuredData } from "../../../metadata-utils";
-import { readRequestSecurityConfig } from "../../../../server/config";
+import { pageMetadata, StructuredData, siteUrl } from "../../../metadata-utils";
 type Props = { params: Promise<{ slug: string }> };
+export const dynamicParams = false;
+export function generateStaticParams() {
+  return catalogIndex.map((entry) => ({ slug: entry.slug }));
+}
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const entry = findCatalogEntry(`/catalog/${slug}`);
@@ -24,7 +28,6 @@ export default async function Technology({ params }: Props) {
   const entry = findCatalogEntry(`/catalog/${slug}`);
   if (!entry) notFound();
   const { content } = await publicSnapshot();
-  const origin = readRequestSecurityConfig().publicOrigin;
   return (
     <>
       <CatalogPage
@@ -40,7 +43,7 @@ export default async function Technology({ params }: Props) {
               "@type": "WebPage",
               name: entry.title,
               description: entry.summary,
-              url: new URL(catalogHref(slug), origin).href,
+              url: siteUrl(catalogHref(slug)),
               inLanguage: "ru",
             },
             {
@@ -53,7 +56,7 @@ export default async function Technology({ params }: Props) {
                 "@type": "ListItem",
                 position: index + 1,
                 name: item.name,
-                item: new URL(item.item, origin).href,
+                item: siteUrl(item.item),
               })),
             },
           ],

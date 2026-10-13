@@ -1,32 +1,59 @@
-const project0w480 = "/assets/projects/al-store-panel-480.webp";
-const project0w960 = "/assets/projects/al-store-panel-960.webp";
-const project0w1007 = "/assets/projects/al-store-panel-1007.webp";
-const project1w480 = "/assets/projects/energo-university-stop-480.webp";
-const project1w960 = "/assets/projects/energo-university-stop-960.webp";
-const project1w1600 = "/assets/projects/energo-university-stop-1600.webp";
-const project2w480 = "/assets/projects/fablab-campus-480.webp";
-const project2w960 = "/assets/projects/fablab-campus-960.webp";
-const project2w1600 = "/assets/projects/fablab-campus-1600.webp";
-const project3w480 = "/assets/projects/food-point-facade-480.webp";
-const project3w960 = "/assets/projects/food-point-facade-960.webp";
-const project3w1255 = "/assets/projects/food-point-facade-1255.webp";
-const project4w480 = "/assets/projects/glass-portal-led-480.webp";
-const project4w960 = "/assets/projects/glass-portal-led-960.webp";
-const project4w1403 = "/assets/projects/glass-portal-led-1403.webp";
-const project5w480 = "/assets/projects/needstop-kiosk-01-480.webp";
-const project5w960 = "/assets/projects/needstop-kiosk-01-960.webp";
-const project5w1420 = "/assets/projects/needstop-kiosk-01-1420.webp";
-const project6w480 = "/assets/projects/sa-pharma-engineering-480.webp";
-const project6w960 = "/assets/projects/sa-pharma-engineering-960.webp";
-const project6w1256 = "/assets/projects/sa-pharma-engineering-1256.webp";
-const project7w480 = "/assets/projects/toimart-signage-480.webp";
-const project7w960 = "/assets/projects/toimart-signage-960.webp";
-const project7w1600 = "/assets/projects/toimart-signage-1600.webp";
-const project8w480 = "/assets/projects/you-vs-you-interior-480.webp";
-const project8w960 = "/assets/projects/you-vs-you-interior-960.webp";
-const project8w1304 = "/assets/projects/you-vs-you-interior-1304.webp";
+import { publicPath } from "../shared/public-path";
 
-export const bundledProjectImages: Record<string, { src: string; srcSet: string; width: number; height: number }> = {
+const project0w480 = publicPath("/assets/projects/al-store-panel-480.webp");
+const project0w960 = publicPath("/assets/projects/al-store-panel-960.webp");
+const project0w1007 = publicPath("/assets/projects/al-store-panel-1007.webp");
+const project1w480 = publicPath(
+  "/assets/projects/energo-university-stop-480.webp",
+);
+const project1w960 = publicPath(
+  "/assets/projects/energo-university-stop-960.webp",
+);
+const project1w1600 = publicPath(
+  "/assets/projects/energo-university-stop-1600.webp",
+);
+const project2w480 = publicPath("/assets/projects/fablab-campus-480.webp");
+const project2w960 = publicPath("/assets/projects/fablab-campus-960.webp");
+const project2w1600 = publicPath("/assets/projects/fablab-campus-1600.webp");
+const project3w480 = publicPath("/assets/projects/food-point-facade-480.webp");
+const project3w960 = publicPath("/assets/projects/food-point-facade-960.webp");
+const project3w1255 = publicPath(
+  "/assets/projects/food-point-facade-1255.webp",
+);
+const project4w480 = publicPath("/assets/projects/glass-portal-led-480.webp");
+const project4w960 = publicPath("/assets/projects/glass-portal-led-960.webp");
+const project4w1403 = publicPath("/assets/projects/glass-portal-led-1403.webp");
+const project5w480 = publicPath("/assets/projects/needstop-kiosk-01-480.webp");
+const project5w960 = publicPath("/assets/projects/needstop-kiosk-01-960.webp");
+const project5w1420 = publicPath(
+  "/assets/projects/needstop-kiosk-01-1420.webp",
+);
+const project6w480 = publicPath(
+  "/assets/projects/sa-pharma-engineering-480.webp",
+);
+const project6w960 = publicPath(
+  "/assets/projects/sa-pharma-engineering-960.webp",
+);
+const project6w1256 = publicPath(
+  "/assets/projects/sa-pharma-engineering-1256.webp",
+);
+const project7w480 = publicPath("/assets/projects/toimart-signage-480.webp");
+const project7w960 = publicPath("/assets/projects/toimart-signage-960.webp");
+const project7w1600 = publicPath("/assets/projects/toimart-signage-1600.webp");
+const project8w480 = publicPath(
+  "/assets/projects/you-vs-you-interior-480.webp",
+);
+const project8w960 = publicPath(
+  "/assets/projects/you-vs-you-interior-960.webp",
+);
+const project8w1304 = publicPath(
+  "/assets/projects/you-vs-you-interior-1304.webp",
+);
+
+export const bundledProjectImages: Record<
+  string,
+  { src: string; srcSet: string; width: number; height: number }
+> = {
   "/src/assets/projects/al-store-panel.jpg": {
     src: project0w1007,
     srcSet: `${project0w480} 480w, ${project0w960} 960w, ${project0w1007} 1007w`,

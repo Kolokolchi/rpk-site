@@ -1,7 +1,6 @@
 import CatalogOverview from "../../../components/site/CatalogOverview";
 import { catalogIndex, catalogHref } from "../../../shared/catalog-index";
-import { pageMetadata, StructuredData } from "../../metadata-utils";
-import { readRequestSecurityConfig } from "../../../server/config";
+import { pageMetadata, StructuredData, siteUrl } from "../../metadata-utils";
 export async function generateMetadata() {
   return pageMetadata(
     "Каталог наружной рекламы и оформления | RPK.KZ",
@@ -10,7 +9,6 @@ export async function generateMetadata() {
   );
 }
 export default function Catalog() {
-  const origin = readRequestSecurityConfig().publicOrigin;
   return (
     <>
       <CatalogOverview />
@@ -19,11 +17,11 @@ export default function Catalog() {
           "@context": "https://schema.org",
           "@type": "CollectionPage",
           name: "Каталог наружной рекламы",
-          url: new URL("/catalog", origin).href,
+          url: siteUrl("/catalog"),
           hasPart: catalogIndex.map((item) => ({
             "@type": "WebPage",
             name: item.title,
-            url: new URL(catalogHref(item.slug), origin).href,
+            url: siteUrl(catalogHref(item.slug)),
           })),
         }}
       />

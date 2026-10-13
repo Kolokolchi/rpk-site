@@ -30,3 +30,12 @@ Runtime не записывает контент. `/admin`, администра
 Проверить главную, каталог и прямой вход на все 24 технологии; canonical/OG/JSON-LD; отсутствие ошибок hydration/CSP; изображения и шрифты; настоящий 404 для неизвестных путей и `/admin`; 405 для POST `/api/content`; отказ чужого Host.
 
 Смена рабочего домена и создание облачных ресурсов не выполнялись. Откат — предыдущий Git commit и предыдущий Deployment в Vercel; исходный проверенный файловый backup сохранён отдельно.
+
+## GitHub Pages
+
+Публичная версия: https://kolokolchi.github.io/rpk-site/
+Исходники: https://github.com/Kolokolchi/rpk-site/tree/nextjs
+
+`npm run build:pages` создаёт изолированную статическую сборку в `artifacts/migration/pages-build/out`. `npm run verify:pages` проверяет маршруты, assets, CSP, меню и фильтры. Ветка `gh-pages` содержит только эту готовую сборку; Pages публикует её корень. Для очередного обновления нужно собрать и проверить новый export, затем обновить ветку публикации.
+
+Основная сборка `npm run build` по-прежнему использует SSR/Vercel. В export HTTP API и proxy отсутствуют; контент фиксируется при сборке. CSP для inline scripts устанавливается через SHA-256 hashes в HTML meta. GitHub Pages не позволяет задавать собственные HTTP security headers, поэтому framing controls из SSR-версии доступны только на серверном размещении. Админки и операций записи нет в обоих режимах.

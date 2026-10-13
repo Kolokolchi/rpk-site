@@ -1,7 +1,6 @@
 import HomePage from "../../components/site/HomePage";
 import { publicSnapshot } from "../site-snapshot";
-import { pageMetadata, StructuredData } from "../metadata-utils";
-import { readRequestSecurityConfig } from "../../server/config";
+import { pageMetadata, StructuredData, siteUrl } from "../metadata-utils";
 export async function generateMetadata() {
   return pageMetadata(
     "Наружная реклама в Алматы | RPK — Больше чем реклама",
@@ -19,7 +18,7 @@ export default async function Home() {
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
           name: "RPK.KZ",
-          url: readRequestSecurityConfig().publicOrigin,
+          url: siteUrl("/"),
           telephone: content.contact.phone,
           email: content.contact.email,
           areaServed: { "@type": "City", name: "Алматы" },

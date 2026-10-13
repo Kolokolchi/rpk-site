@@ -1,6 +1,10 @@
 import type { ReactNode } from "react";
 import { headers } from "next/headers";
 import SiteHeader from "../../components/site/SiteHeader";
+import {
+  RouteHeader,
+  RouteFloatingContact,
+} from "../../components/site/RouteContacts";
 import SiteFooter from "../../components/site/SiteFooter";
 import FloatingContact from "../../components/site/FloatingContact";
 import ScrollReveal from "../../components/site/ScrollReveal";
@@ -14,7 +18,10 @@ export default async function PublicLayout({
   children: ReactNode;
 }) {
   const { content } = await publicSnapshot();
-  const pathname = (await headers()).get("x-rpk-path") || "/";
+  const staticExport = process.env.RPK_STATIC_EXPORT === "true";
+  const pathname = staticExport
+    ? "/"
+    : (await headers()).get("x-rpk-path") || "/";
   const whatsappHref = whatsappLink(
     content.contact.phone,
     findCatalogEntry(pathname)?.title,
@@ -24,15 +31,23 @@ export default async function PublicLayout({
       <a className="skip-link" href="#top">
         Перейти к содержимому
       </a>
-      <SiteHeader
-        whatsappHref={whatsappHref}
-        homePrefix={pathname === "/" ? "" : "/"}
-      />
+      {staticExport ? (
+        <RouteHeader phone={content.contact.phone} />
+      ) : (
+        <SiteHeader
+          whatsappHref={whatsappHref}
+          homePrefix={pathname === "/" ? "" : "/"}
+        />
+      )}
       <main id="top" tabIndex={-1}>
         {children}
       </main>
       <SiteFooter footer={content.footer} />
-      <FloatingContact whatsappHref={whatsappHref} />
+      {staticExport ? (
+        <RouteFloatingContact phone={content.contact.phone} />
+      ) : (
+        <FloatingContact whatsappHref={whatsappHref} />
+      )}
       <ScrollReveal />
     </div>
   );

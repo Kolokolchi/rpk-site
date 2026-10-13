@@ -19,7 +19,9 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "verify": "npm run typecheck && npm run lint && npm test && npm run build && npm run test:e2e",
-    "security:check": "npm run verify && npm audit --omit=dev && npm audit signatures"
+    "security:check": "npm run verify && npm audit --omit=dev && npm audit signatures",
+    "build:pages": "node scripts/build-pages.mjs",
+    "verify:pages": "node scripts/verify-pages.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.546.0",

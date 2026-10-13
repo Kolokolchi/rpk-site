@@ -10,9 +10,12 @@ import {
 import { bundledBrandImages } from "../../assets/brand-images";
 import { bundledCatalogImages } from "../../assets/catalog-images";
 import { bundledProjectImages } from "../../assets/project-images";
+import { publicPath } from "../../shared/public-path";
 
-export const logoMark = "/assets/brand/rpk-logo-light.svg";
-export const introLetterBlueprint = "/assets/intro-letter-blueprint.svg";
+export const logoMark = publicPath("/assets/brand/rpk-logo-light.svg");
+export const introLetterBlueprint = publicPath(
+  "/assets/intro-letter-blueprint.svg",
+);
 
 export const iconMap = {
   badge: BadgeCheck,
@@ -29,9 +32,11 @@ export function revealDelayClass(index: number) {
 }
 
 export function publicAssetUrl(source: string) {
-  return source.startsWith("/src/assets/")
-    ? source.replace("/src/assets/", "/assets/")
-    : source;
+  return publicPath(
+    source.startsWith("/src/assets/")
+      ? source.replace("/src/assets/", "/assets/")
+      : source,
+  );
 }
 
 export function siteImageSource(source: string) {

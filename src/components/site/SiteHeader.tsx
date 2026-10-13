@@ -3,6 +3,7 @@
 import { Menu, MessageCircle, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { logoMark } from "./site-utils";
+import { publicPath } from "../../shared/public-path";
 
 const navItems = [
   { label: "Каталог", href: "#services" },
@@ -62,7 +63,7 @@ export default function SiteHeader({
     <header className="site-header" ref={headerRef}>
       <a
         className="brand"
-        href={`${homePrefix}#top`}
+        href={publicPath(`${homePrefix}#top`)}
         aria-label="RPK.KZ — на главную"
         onClick={() => setMenuOpen(false)}
       >
@@ -80,7 +81,7 @@ export default function SiteHeader({
         {navItems.map((item) => (
           <a
             key={item.href}
-            href={`${homePrefix}${item.href}`}
+            href={publicPath(`${homePrefix}${item.href}`)}
             onClick={() => setMenuOpen(false)}
           >
             {item.label}

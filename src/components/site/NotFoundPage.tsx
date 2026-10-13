@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { publicPath } from "../../shared/public-path";
 
 export default function NotFoundPage() {
   return (
@@ -11,7 +12,7 @@ export default function NotFoundPage() {
         Возможно, ссылка изменилась. Выберите нужную технологию в каталоге или
         вернитесь на главную.
       </p>
-      <a className="primary-button" href="/catalog">
+      <a className="primary-button" href={publicPath("/catalog")}>
         <span>Открыть каталог</span>
         <ArrowRight aria-hidden="true" />
       </a>

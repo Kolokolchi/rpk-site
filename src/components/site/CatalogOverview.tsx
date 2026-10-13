@@ -1,4 +1,5 @@
 import CatalogIndex from "../../catalog/CatalogIndex";
+import { publicPath } from "../../shared/public-path";
 
 export default function CatalogOverview() {
   return (
@@ -8,7 +9,7 @@ export default function CatalogOverview() {
       aria-labelledby="catalog-overview-title"
     >
       <nav className="catalog-breadcrumbs" aria-label="Путь по сайту">
-        <a href="/">Главная</a>
+        <a href={publicPath("/")}>Главная</a>
         <span aria-hidden="true">/</span>
         <span aria-current="page">Каталог</span>
       </nav>
