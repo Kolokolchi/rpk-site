@@ -1,0 +1,11 @@
+{
+  "source": "artifacts/solutions/originals/acrylic-displays.png",
+  "sourceSha256": "b9f943e7f6ffd96173bdc57dc0ae3f1ad052e960040793494c5eb315162da3c2",
+  "generatedOn": "2026-10-15",
+  "kind": "illustration",
+  "generator": "built-in image_gen",
+  "promptManifest": "artifacts/solutions/generated-images.json",
+  "width": 1536,
+  "height": 1024,
+  "sha256": "fb73b3d15b2564f488b820155117be4774bee328c372304d313254e1a3a0c2d8"
+}

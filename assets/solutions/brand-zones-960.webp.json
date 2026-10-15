@@ -1,0 +1,11 @@
+{
+  "source": "artifacts/solutions/originals/brand-zones.png",
+  "sourceSha256": "a581ced57799b1e5078a3619d127872b971c7d3c7f19799ae93e497850b5f6e2",
+  "generatedOn": "2026-10-15",
+  "kind": "illustration",
+  "generator": "built-in image_gen",
+  "promptManifest": "artifacts/solutions/generated-images.json",
+  "width": 960,
+  "height": 640,
+  "sha256": "d9f8370c32e503e0deac8759958f2a9be7b7de936a332a6bcd0debf669a42ba8"
+}

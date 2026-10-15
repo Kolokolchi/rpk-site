@@ -1,0 +1,11 @@
+{
+  "source": "artifacts/solutions/originals/menu-boards.png",
+  "sourceSha256": "f983735d9b0bf26059b8701af45bd8f5f3c7e9ad4cbf7bdbd21b63280025b597",
+  "generatedOn": "2026-10-15",
+  "kind": "illustration",
+  "generator": "built-in image_gen",
+  "promptManifest": "artifacts/solutions/generated-images.json",
+  "width": 1536,
+  "height": 1024,
+  "sha256": "dbc9864020a2ac05d03a876f11a08a80aa59ebf0ce333545ef26e394d1be161e"
+}

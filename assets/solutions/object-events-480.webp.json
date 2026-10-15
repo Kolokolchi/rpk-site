@@ -1,0 +1,11 @@
+{
+  "source": "artifacts/solutions/originals/object-events.png",
+  "sourceSha256": "c6615206f3fc2cbad5cf077a51cbadf3a529b789535add1ea80b1b1c04972fc5",
+  "generatedOn": "2026-10-15",
+  "kind": "illustration",
+  "generator": "built-in image_gen",
+  "promptManifest": "artifacts/solutions/generated-images.json",
+  "width": 480,
+  "height": 320,
+  "sha256": "4a9e36190de60e8776346c7d1e62a53fee80dd86a148f0b4de2c4a10797c9de1"
+}

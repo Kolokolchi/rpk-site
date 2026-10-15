@@ -1,0 +1,10 @@
+:HL["/rpk-site/_next/static/css/1fe200080f429a34.css","style"]
+:HL["/rpk-site/_next/static/css/ffefa030f95a04cd.css","style"]
+:HL["/rpk-site/_next/static/css/3a672e512b66db01.css","style"]
+:HL["/rpk-site/assets/brand/rpk-logo-light.svg","image"]
+:HL["/rpk-site/assets/solutions/brand-zones-1536.webp","image",{"imageSrcSet":"/rpk-site/assets/solutions/brand-zones-480.webp 480w, /rpk-site/assets/solutions/brand-zones-960.webp 960w, /rpk-site/assets/solutions/brand-zones-1536.webp 1536w","imageSizes":"(max-width: 820px) calc(100vw - 40px), 640px","fetchPriority":"high"}]
+4:[["children",{"s":"__PAGE__","h":160}]]
+3:[["children",{"s":{"n":"slug","t":"d","k":"brand-zones","s":[]},"h":65632,"c":"$Q4"}]]
+2:[["children",{"s":"catalog","h":131168,"c":"$Q3"}]]
+1:[["children",{"s":"(site)","h":131168,"c":"$Q2"}]]
+0:{"b":"8unu-KyNCh8d0Eis4F0ru","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}

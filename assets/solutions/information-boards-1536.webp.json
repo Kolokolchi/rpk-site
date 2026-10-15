@@ -1,0 +1,11 @@
+{
+  "source": "artifacts/solutions/originals/information-boards.png",
+  "sourceSha256": "daacd48fef68c3fe420acc3bb96a6623413a3daa4fdce453da9221d3c21a9e20",
+  "generatedOn": "2026-10-15",
+  "kind": "illustration",
+  "generator": "built-in image_gen",
+  "promptManifest": "artifacts/solutions/generated-images.json",
+  "width": 1536,
+  "height": 1024,
+  "sha256": "f30f22fd9aea8c6112a0f72ac5a42b1fb768e0dc31a6671f7b90dfbe241cb62b"
+}

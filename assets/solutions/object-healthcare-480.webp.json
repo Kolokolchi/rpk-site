@@ -1,0 +1,11 @@
+{
+  "source": "artifacts/solutions/originals/object-healthcare.png",
+  "sourceSha256": "7184b96ae40f837ad5cb21d378213422297e64bd43c6f0b74ca6b55b2bebf4a3",
+  "generatedOn": "2026-10-15",
+  "kind": "illustration",
+  "generator": "built-in image_gen",
+  "promptManifest": "artifacts/solutions/generated-images.json",
+  "width": 480,
+  "height": 320,
+  "sha256": "70b1fbf9341ae221225266618b6a96cc1ecb57c7348182976d1f9e86f1ede2e7"
+}

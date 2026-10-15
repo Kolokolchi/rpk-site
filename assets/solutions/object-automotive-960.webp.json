@@ -1,0 +1,11 @@
+{
+  "source": "artifacts/solutions/originals/object-automotive.png",
+  "sourceSha256": "34a62e3cc14f608c8fd41ce34bfa77f9c358fe69a735a8d86d007889ff26d724",
+  "generatedOn": "2026-10-15",
+  "kind": "illustration",
+  "generator": "built-in image_gen",
+  "promptManifest": "artifacts/solutions/generated-images.json",
+  "width": 960,
+  "height": 640,
+  "sha256": "dddf8d31d11885870049b084dbbd49d7a17fb88f482f760d10addd372c9424c4"
+}
