@@ -76,6 +76,7 @@ export default function SolutionPage({
           <SolutionImage
             image={solution.image}
             title={solution.imageAlt}
+            sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 820px) 92vw, (max-width: 1100px) 45vw, 640px"
             priority
           />
           <figcaption>Иллюстрация возможного оформления объекта</figcaption>

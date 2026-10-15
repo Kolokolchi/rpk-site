@@ -294,3 +294,13 @@ The fatal-error fallback sits outside the branded shell and therefore has explic
 ## Implementation after Next.js migration
 
 The public design is preserved. Styles now load from `src/styles/base.css`, `layout.css`, `catalog.css`, `fonts.css`, then `identity.css`. The browser editor, login and all editing states have been removed at the user’s explicit request. Public content and structure are maintained directly in versioned source files.
+
+## Responsive layout safeguards
+
+Advantage cards have equal 29px insets on desktop and 25px insets at 820px and below, including the first card. Project descriptions retain their 27px inset when a filter leaves one project. Production image captions have 18px side and bottom insets.
+
+The header has a 92px minimum height, reducing to 76px on phones; it can grow with enlarged text. Its mobile menu starts below the header and scrolls within the remaining viewport height. Decorative hero-panel copy is hidden at 820px and below, where the panel is partially outside the viewport.
+
+Text can wrap long words, grid children can shrink within their columns, and process numbers do not shrink into the following text. Stacked production, contact, FAQ and ecosystem sections use zero-minimum grid tracks. The ecosystem map retains one column at 820px and below. Solution hero images declare their full single-column width at 601–820px so the browser selects a suitably sharp source.
+
+`e2e/responsive.spec.ts` checks real element and text bounds, card insets, single-project filtering, short landscape menus, and simulated 200% text enlargement. `node scripts/audit-responsive.mjs` captures the 46-route, 12-width matrix under `test-results/responsive/`. The detector's generic font warnings are intentional exceptions: Montserrat is mandated by the pinned brand reference; Arial is the fallback in the inherited structural layer.

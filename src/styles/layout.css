@@ -363,7 +363,6 @@
   gap: 35px;
   align-items: center;
 }
-.rpk-editorial .portfolio-grid[data-visible-count="1"] .project-card-content { padding: 0; }
 .rpk-editorial .portfolio-grid .project-card img { width: 100%; height: auto; aspect-ratio: 1.55; object-fit: cover; }
 .rpk-editorial .project-media { overflow: hidden; border: 1px solid var(--ink); }
 .rpk-editorial .project-card-content { padding: 21px 0 0; }
@@ -394,7 +393,6 @@
 .rpk-editorial .contact-copy > p:not(.eyebrow) { margin-top: 22px; color: var(--muted); font-size: 16px; line-height: 1.8; }
 .rpk-editorial .advantage-grid { border: 0; border-radius: 0; background: var(--line); }
 .rpk-editorial .advantage-card { min-height: 0; padding: 29px; background: var(--paper); box-shadow: none; }
-.rpk-editorial .advantage-card:first-child { padding-left: 0; }
 .rpk-editorial .advantage-card::after { display: none; }
 .rpk-editorial .advantage-card:hover { transform: none; box-shadow: none; }
 .rpk-editorial .advantage-card svg { width: 33px; height: 33px; margin-bottom: 23px; color: var(--action-bg); }
@@ -524,8 +522,7 @@
   .rpk-editorial .intro-band { grid-template-columns: .7fr 1.3fr; }
   .rpk-editorial .intro-copy h2 { font-size: 34px; }
   .rpk-editorial .advantage-grid { grid-template-columns: 1fr; background: transparent; }
-  .rpk-editorial .advantage-card,
-  .rpk-editorial .advantage-card:first-child { padding: 25px 0; border-top: 1px solid var(--line); }
+  .rpk-editorial .advantage-card { padding: 25px; border-top: 1px solid var(--line); }
   .rpk-editorial .advantage-card svg { margin-bottom: 17px; }
   .rpk-editorial .production-section,
   .rpk-editorial .ecosystem-section,
@@ -591,7 +588,6 @@
   .rpk-editorial .object-card h3 { font-size: 27px; }
   .rpk-editorial .portfolio-grid { grid-template-columns: 1fr; gap: 31px; }
   .rpk-editorial .portfolio-grid[data-visible-count="1"] .project-card:not([hidden]) { grid-template-columns: 1fr; gap: 0; }
-  .rpk-editorial .portfolio-grid[data-visible-count="1"] .project-card-content { padding-top: 18px; }
   .rpk-editorial .project-filters { gap: 8px; }
   .rpk-editorial .project-filters button { padding: 10px 13px; font-size: 11px; gap: 9px; }
   .rpk-editorial .project-card h3 { font-size: 30px; }

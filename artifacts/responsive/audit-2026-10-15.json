@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-15",
+  "verdict": "passed",
+  "scope": {
+    "routes": 46,
+    "technologyPages": 30,
+    "solutionPages": 12,
+    "overviewPages": ["/", "/catalog", "/solutions"],
+    "errorPage": "/missing-page",
+    "chromiumViewportWidths": [320, 360, 390, 520, 600, 768, 820, 1024, 1100, 1280, 1440, 1920],
+    "regressionViewportWidths": [320, 390, 768, 1024, 1440],
+    "landscapeViewports": [
+      { "width": 667, "height": 320 },
+      { "width": 844, "height": 390 }
+    ]
+  },
+  "fixes": [
+    "Removed the first advantage card's zero left inset and restored mobile card insets.",
+    "Removed the single-project filter override that cleared the description's padding.",
+    "Added side and bottom insets to the production photograph caption.",
+    "Aligned dropdown positioning and height with the shared header height; allowed the header to grow with enlarged text.",
+    "Removed clipped decorative hero-panel copy at tablet widths.",
+    "Prevented long words and minimum grid widths from pushing text outside cards and columns at 200% text enlargement.",
+    "Prevented catalog process numbers from shrinking into adjacent text.",
+    "Corrected solution hero image sizes on 601–820px viewports; verified selection of the 960px source at 601, 768 and 820px."
+  ],
+  "validation": {
+    "productionBuild": "passed",
+    "typecheck": "passed",
+    "eslint": "passed",
+    "prettier": "passed",
+    "vitest": { "passed": 24, "files": 6 },
+    "chromiumFullSuite": { "passed": 242 },
+    "chromiumFocusedConfirmation": { "passed": 12 },
+    "firefoxAndWebKitResponsiveSuite": { "passed": 474, "perEngine": 237 },
+    "threeEngineHeaderAndEnlargedTextConfirmation": { "passed": 36 },
+    "chromiumViewportMatrix": {
+      "checks": 552,
+      "detectedHorizontalOverflows": 0,
+      "navigationFailures": 0
+    },
+    "textEnlargement": "Each element's computed font size was measured before applying a 2x multiplier; this simulates text-only enlargement.",
+    "gestureEvidence": "Existing Chromium tests exercised mouse dragging, wheel scrolling, reduced motion, and synthesized touch swipes on the partner marquee.",
+    "visualEvidence": ["advantages-desktop.png", "advantages-mobile.png"],
+    "detectorExceptions": "Generic font warnings concern the user-pinned Montserrat brand face and the inherited Arial fallback; existing design-scale advisories were reviewed without redesigning the approved identity."
+  },
+  "limitations": [
+    "Browser automation ran on Windows using Chromium, Firefox and Playwright WebKit with emulated viewport sizes.",
+    "Physical iOS and Android devices were not tested. WebKit on Windows does not establish physical Safari-device coverage."
+  ],
+  "reproduce": {
+    "build": "npm run build",
+    "defaultSuite": "npm run test:e2e",
+    "allEngines": "npx playwright test e2e/responsive.spec.ts --browser=all --workers=3",
+    "viewportMatrix": "node scripts/audit-responsive.mjs after"
+  }
+}
