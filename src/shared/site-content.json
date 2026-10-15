@@ -146,36 +146,124 @@
   "clientsTitle": "Компании, для которых мы работали",
   "clients": [
     {
-      "name": "TOIMART",
-      "id": "23450e18-a716-4ad8-be09-3a68e427629a"
+      "name": "Kusto Home",
+      "id": "db2f3ed0-4912-4122-b3ed-e608ff56bf96",
+      "logo": "/assets/partners/kusto-home.svg"
     },
     {
-      "name": "SA Pharma",
-      "id": "af2a111c-c19b-47f5-972d-96acf59d4ba0"
+      "name": "Freedom Bank",
+      "id": "be880f54-1673-422d-9a3d-f3be33fd458b",
+      "logo": "/assets/partners/freedom-bank.svg"
+    },
+    {
+      "name": "Basilic",
+      "id": "c54d10e6-23b8-4cc6-80f3-f20926138458",
+      "logo": "/assets/partners/basilic.svg"
+    },
+    {
+      "name": "Family Park",
+      "id": "b0a9609e-505e-4edc-9bb8-7bf94f5ea654",
+      "logo": "/assets/partners/family-park.webp"
     },
     {
       "name": "Energo University",
-      "id": "9f4bc06f-8ee4-4c44-b152-593ebf6a7c92"
+      "id": "9f4bc06f-8ee4-4c44-b152-593ebf6a7c92",
+      "logo": "/assets/partners/energo-university.svg"
     },
     {
-      "name": "Food Point",
-      "id": "c4a3e306-a019-4ed3-88e0-fd0d8766712c"
+      "name": "EPSON",
+      "id": "9a160db3-5a18-49ea-bc49-2bf86a6201f4",
+      "logo": "/assets/partners/epson.svg"
     },
     {
-      "name": "Needstop",
-      "id": "5807eb42-0486-498a-b1bc-da19ab919f02"
+      "name": "Actual Optic",
+      "id": "7a14767a-723c-4e57-93b0-b23d95901687",
+      "logo": "/assets/partners/actual-optic.svg"
     },
     {
-      "name": "FABLAB",
-      "id": "03de2155-58ad-4fed-94e8-b8beba02e903"
+      "name": "TAKAYAMA",
+      "id": "dad4ba75-201b-4a67-8ead-4861afb8e3c0",
+      "logo": "/assets/partners/takayama.svg"
     },
     {
-      "name": "aL Store",
-      "id": "3ed0715b-dbc1-46cb-8b11-a626c345b31f"
+      "name": "MOTUL",
+      "id": "523cd6a7-221c-400f-a131-9db16acc7b4a",
+      "logo": "/assets/partners/motul.svg"
     },
     {
-      "name": "YOU VS YOU",
-      "id": "2a2812bb-1e6c-46cf-8367-2b582364e59d"
+      "name": "Castrol",
+      "id": "b9e9e24b-bb6f-4dc3-9d4a-25833691ab4f",
+      "logo": "/assets/partners/castrol.svg"
+    },
+    {
+      "name": "Herbalife",
+      "id": "69042739-daff-463d-898a-63692fbc2e46",
+      "logo": "/assets/partners/herbalife.svg"
+    },
+    {
+      "name": "МИРТЕК",
+      "id": "9f739528-3257-40f9-9a4f-db0ae5bd4fac",
+      "logo": "/assets/partners/mirtek.svg"
+    },
+    {
+      "name": "Oi-Qaragai",
+      "id": "748ef0b6-dc1f-4972-90bc-52ae66a3672a",
+      "logo": "/assets/partners/oi-qaragai.svg"
+    },
+    {
+      "name": "INVICTUS GO",
+      "id": "23525a1a-e564-4ae0-bdf2-13284e43dfa3",
+      "logo": "/assets/partners/invictus-go.svg"
+    },
+    {
+      "name": "Fawori",
+      "id": "6c75c14e-f203-4f4c-8170-88f49b8499ea",
+      "logo": "/assets/partners/fawori.svg"
+    },
+    {
+      "name": "AlinEX",
+      "id": "4eb154eb-212f-43df-b932-cb124c5b1b59",
+      "logo": "/assets/partners/alinex.svg"
+    },
+    {
+      "name": "Compass",
+      "id": "12bc99bf-7af2-4228-8eef-0ca7f0f903fd",
+      "logo": "/assets/partners/compass.svg"
+    },
+    {
+      "name": "Cosmart",
+      "id": "de464045-0287-449d-8890-50117308dcf1",
+      "logo": "/assets/partners/cosmart.svg"
+    },
+    {
+      "name": "Line Brew",
+      "id": "6f045f9a-44e1-49d4-aac3-9ede276bcb73",
+      "logo": "/assets/partners/line-brew.svg"
+    },
+    {
+      "name": "IMC",
+      "id": "df37a3d1-8b38-43bd-b739-9b4da7964e8b",
+      "logo": "/assets/partners/imc.svg"
+    },
+    {
+      "name": "Ankor",
+      "id": "9a8be65a-eabc-4f5b-89a4-e382c95ff73b",
+      "logo": "/assets/partners/ankor.svg"
+    },
+    {
+      "name": "I'm",
+      "id": "14a43275-2343-46e5-9b7a-3e0275da0d09",
+      "logo": "/assets/partners/im.svg"
+    },
+    {
+      "name": "VISA",
+      "id": "8bed48b9-3df6-4258-b6a8-64608aba78c8",
+      "logo": "/assets/partners/visa.svg"
+    },
+    {
+      "name": "Corona Extra",
+      "id": "ddc9e16f-765e-43a3-b268-69990da08f62",
+      "logo": "/assets/partners/corona-extra.svg"
     }
   ],
   "testimonialsTitle": "Понятный результат на каждом этапе",

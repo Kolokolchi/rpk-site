@@ -59,6 +59,12 @@ await fs.symlink(
   process.platform === "win32" ? "junction" : "dir",
 );
 const tsconfigPath = path.join(staging, "tsconfig.json");
+const sitemapPath = path.join(staging, "src/app/sitemap.ts");
+const sitemapSource = await fs.readFile(sitemapPath, "utf8");
+await fs.writeFile(
+  sitemapPath,
+  `export const dynamic = "force-static";\n${sitemapSource}`,
+);
 const tsconfig = JSON.parse(await fs.readFile(tsconfigPath, "utf8"));
 tsconfig.include = [
   "next-env.d.ts",

@@ -96,8 +96,46 @@ button, input, textarea, select { font-family: inherit; }
 .rpk-editorial.rpk-branded .project-count { color: var(--brand-muted); }
 .rpk-editorial.rpk-branded .client-logo-card { background: #141414; border-color: var(--brand-line); color: white; }
 .rpk-editorial.rpk-branded .client-logo-name,.rpk-editorial.rpk-branded .client-name-only { color: #fff; font: 600 17px/1.4 var(--display); letter-spacing: .015em; }
+.rpk-editorial.rpk-branded .client-logo-media { height: 104px; padding: 14px; background: #fff; }
+.rpk-editorial.rpk-branded .client-logo-media-dark { background: #141414; }
+.rpk-editorial.rpk-branded .client-logo-image { height: 76px; min-width: 0; min-height: 0; padding: 0; object-fit: contain; }
 .rpk-editorial.rpk-branded .clients-note { color: var(--brand-muted); }
 .rpk-editorial.rpk-branded .clients-note a { color: var(--brand-orange); }
+.rpk-editorial.rpk-branded main > .clients-section { padding-block: 54px; }
+.rpk-editorial.rpk-branded .clients-section .section-heading h2 { font-size: clamp(24px, 2.5vw, 36px); max-width: none; }
+.rpk-editorial.rpk-branded .client-marquee-viewport { overflow: clip; cursor: grab; touch-action: pan-y pinch-zoom; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.rpk-editorial.rpk-branded .client-marquee[data-dragging="true"] .client-marquee-viewport { cursor: grabbing; }
+.rpk-editorial.rpk-branded .client-marquee .client-logo-image { pointer-events: none; -webkit-user-drag: none; }
+.rpk-editorial.rpk-branded .client-logo-track { display: flex; width: max-content; animation: partner-logo-drift 240s linear infinite; }
+.rpk-editorial.rpk-branded .client-logo-group { display: flex; flex: 0 0 auto; gap: 16px; padding-right: 16px; }
+.rpk-editorial.rpk-branded .client-marquee .client-logo-card { flex: 0 0 188px; width: 188px; min-height: 92px; padding: 0; background: transparent; }
+.rpk-editorial.rpk-branded .client-marquee .client-logo-media { height: 92px; }
+.rpk-editorial.rpk-branded .client-marquee .client-logo-image { height: 64px; }
+.rpk-editorial.rpk-branded .client-marquee[data-paused="true"] .client-logo-track,
+.rpk-editorial.rpk-branded .client-marquee[data-dragging="true"] .client-logo-track,
+.rpk-editorial.rpk-branded .client-marquee-viewport:focus-visible .client-logo-track { animation-play-state: paused; }
+.rpk-editorial.rpk-branded .client-marquee-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 20px; margin-top: 14px; }
+.rpk-editorial.rpk-branded .client-marquee-actions .clients-note { margin: 0; }
+.rpk-editorial.rpk-branded .client-marquee-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-width: 44px; min-height: 44px; padding: 8px 12px; border: 1px solid var(--brand-line); border-radius: 0; background: transparent; color: var(--brand-muted); font: 400 12px/1.5 var(--display); cursor: pointer; }
+.rpk-editorial.rpk-branded .client-marquee-toggle svg { width: 16px; height: 16px; }
+.rpk-editorial.rpk-branded .client-marquee-toggle:hover { color: var(--brand-white); border-color: var(--brand-orange); }
+@keyframes partner-logo-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (hover: hover) and (pointer: fine) {
+  .rpk-editorial.rpk-branded .client-marquee-viewport:hover .client-logo-track { animation-play-state: paused; }
+}
+@media (max-width: 600px) {
+  .rpk-editorial.rpk-branded main > .clients-section { padding-block: 38px; }
+  .rpk-editorial.rpk-branded .client-marquee-toggle span { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rpk-editorial.rpk-branded .client-marquee-viewport { overflow-x: auto; overflow-y: hidden; touch-action: auto; }
+  .rpk-editorial.rpk-branded .client-logo-track { animation: none; transform: none; }
+  .rpk-editorial.rpk-branded .client-logo-group[aria-hidden="true"],
+  .rpk-editorial.rpk-branded .client-marquee-toggle { display: none; }
+}
 .rpk-editorial.rpk-branded .intro-band { position: relative; background: #111; border: 1px solid #353535; padding: 54px; grid-template-columns: .9fr 1.4fr; gap: 54px; }
 .rpk-editorial.rpk-branded .intro-band::before { content: ""; display: block; position: absolute; inset: 0; background: url("/assets/brand/brand-material-1600.webp") center / cover; opacity: .18; pointer-events: none; }
 .rpk-editorial.rpk-branded .intro-band > * { position: relative; z-index: 1; }

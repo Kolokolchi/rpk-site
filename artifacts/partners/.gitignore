@@ -1,0 +1,11 @@
+# Local CorelDRAW conversion and third-party comparison files.
+*
+!.gitignore
+!README.md
+!manifest.json
+!contact-sheet.png
+!thumbnail.png
+!previous-clients.json
+!clients-1440.png
+!clients-390.png
+!browser-check.json

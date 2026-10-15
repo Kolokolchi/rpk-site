@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { catalogIndex } from "../src/shared/catalog-index";
 import sourceContent from "../src/shared/site-content.json" with { type: "json" };
-test("24 technology pages render content and metadata before JavaScript", async ({
+test("all technology pages render content and metadata before JavaScript", async ({
   request,
 }) => {
   for (const entry of catalogIndex) {
@@ -40,7 +40,7 @@ test("public browser, CSP, filters, images and keyboard menu", async ({
     sourceContent.portfolio.length,
   );
   await page.goto("/catalog");
-  await expect(page.locator(".catalog-card")).toHaveCount(24);
+  await expect(page.locator(".catalog-card")).toHaveCount(catalogIndex.length);
   await page.goto("/catalog/channel-letters");
   await page.evaluate(async () => {
     await document.fonts.ready;

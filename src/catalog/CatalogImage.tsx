@@ -1,10 +1,12 @@
 import { bundledCatalogImages } from "../assets/catalog-images";
 import { bundledProjectImages } from "../assets/project-images";
+import { bundledExpansionImages } from "../assets/expansion-images";
 import { publicPath } from "../shared/public-path";
 import type { CatalogMeta } from "./catalog-content";
 
 export function catalogImageSource(entry: CatalogMeta) {
   return (
+    bundledExpansionImages[entry.image] ||
     bundledCatalogImages[entry.image] ||
     bundledProjectImages[entry.image] || {
       src: publicPath(

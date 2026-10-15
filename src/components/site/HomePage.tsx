@@ -10,12 +10,14 @@ import EcosystemSection from "./EcosystemSection";
 import FaqSection from "./FaqSection";
 import ContactSection from "./ContactSection";
 import ProjectPortfolio from "./ProjectPortfolio";
+import BusinessSolutions from "../../solutions/BusinessSolutions";
 
 export default function HomePage({ content }: { content: SiteContent }) {
   return (
     <>
       <HeroSection content={content} />
       <ServicesSection content={content} />
+      <BusinessSolutions />
       <ProjectPortfolio
         portfolio={content.portfolio}
         title={content.portfolioTitle}

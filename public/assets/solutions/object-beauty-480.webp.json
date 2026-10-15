@@ -1,0 +1,11 @@
+{
+  "source": "artifacts/solutions/originals/object-beauty.png",
+  "sourceSha256": "2e92321a863cc4bb81c52f00459fce3c839fe5cf39adf40093f10176d6c43af1",
+  "generatedOn": "2026-10-15",
+  "kind": "illustration",
+  "generator": "built-in image_gen",
+  "promptManifest": "artifacts/solutions/generated-images.json",
+  "width": 480,
+  "height": 320,
+  "sha256": "427f91ee8cbe11c84b96928e0cc3fff7c3465093fb129a001eaaab30439f93e9"
+}

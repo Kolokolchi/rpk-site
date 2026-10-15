@@ -1,4 +1,5 @@
 import { catalogIndex } from "../shared/catalog-index";
+import { extraCatalogDetails } from "./catalog-extra";
 
 export type CatalogMeta = typeof catalogIndex[number];
 export type ExplainedItem = { title: string; text: string };
@@ -1077,5 +1078,5 @@ const details: CatalogDetail[] = [
 ];
 
 export function getCatalogDetail(slug: string) {
-  return details.find((detail) => detail.slug === slug);
+  return details.find((detail) => detail.slug === slug) ?? extraCatalogDetails.find((detail) => detail.slug === slug);
 }

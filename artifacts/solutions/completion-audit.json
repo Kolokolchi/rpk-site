@@ -1,0 +1,180 @@
+{
+  "objective": "Expand the referenced business object block; dedicated pages describing every zone, problems/solutions and techniques; add POSM and missing products",
+  "status": "verified",
+  "solutionPages": [
+    {
+      "slug": "retail",
+      "h1": "Магазины и торговые точки",
+      "problems": 4,
+      "zones": 4,
+      "techniques": 8,
+      "brief": 6,
+      "process": 4,
+      "faq": 3,
+      "products": 8,
+      "fullIntroduction": true
+    },
+    {
+      "slug": "food",
+      "h1": "Кафе и рестораны",
+      "problems": 4,
+      "zones": 4,
+      "techniques": 8,
+      "brief": 6,
+      "process": 4,
+      "faq": 3,
+      "products": 8,
+      "fullIntroduction": true
+    },
+    {
+      "slug": "interior",
+      "h1": "Офисы и бизнес-центры",
+      "problems": 4,
+      "zones": 4,
+      "techniques": 8,
+      "brief": 6,
+      "process": 4,
+      "faq": 3,
+      "products": 8,
+      "fullIntroduction": true
+    },
+    {
+      "slug": "campus",
+      "h1": "Кампусы и учреждения",
+      "problems": 4,
+      "zones": 4,
+      "techniques": 8,
+      "brief": 6,
+      "process": 4,
+      "faq": 3,
+      "products": 8,
+      "fullIntroduction": true
+    },
+    {
+      "slug": "healthcare",
+      "h1": "Клиники и аптеки",
+      "problems": 4,
+      "zones": 4,
+      "techniques": 8,
+      "brief": 6,
+      "process": 4,
+      "faq": 3,
+      "products": 8,
+      "fullIntroduction": true
+    },
+    {
+      "slug": "hospitality",
+      "h1": "Отели и апарт-отели",
+      "problems": 4,
+      "zones": 4,
+      "techniques": 8,
+      "brief": 6,
+      "process": 4,
+      "faq": 3,
+      "products": 8,
+      "fullIntroduction": true
+    },
+    {
+      "slug": "fitness",
+      "h1": "Фитнес и спортивные клубы",
+      "problems": 4,
+      "zones": 4,
+      "techniques": 8,
+      "brief": 6,
+      "process": 4,
+      "faq": 4,
+      "products": 8,
+      "fullIntroduction": true
+    },
+    {
+      "slug": "beauty",
+      "h1": "Салоны и студии услуг",
+      "problems": 4,
+      "zones": 4,
+      "techniques": 8,
+      "brief": 6,
+      "process": 4,
+      "faq": 4,
+      "products": 8,
+      "fullIntroduction": true
+    },
+    {
+      "slug": "automotive",
+      "h1": "АЗС и автосервисы",
+      "problems": 4,
+      "zones": 5,
+      "techniques": 11,
+      "brief": 6,
+      "process": 4,
+      "faq": 4,
+      "products": 8,
+      "fullIntroduction": true
+    },
+    {
+      "slug": "industrial",
+      "h1": "Производство и склады",
+      "problems": 4,
+      "zones": 4,
+      "techniques": 8,
+      "brief": 6,
+      "process": 4,
+      "faq": 4,
+      "products": 8,
+      "fullIntroduction": true
+    },
+    {
+      "slug": "residential",
+      "h1": "Жилые комплексы и девелопмент",
+      "problems": 4,
+      "zones": 4,
+      "techniques": 8,
+      "brief": 6,
+      "process": 4,
+      "faq": 4,
+      "products": 8,
+      "fullIntroduction": true
+    },
+    {
+      "slug": "events",
+      "h1": "Выставки и мероприятия",
+      "problems": 4,
+      "zones": 4,
+      "techniques": 8,
+      "brief": 6,
+      "process": 4,
+      "faq": 4,
+      "products": 8,
+      "fullIntroduction": true
+    }
+  ],
+  "totals": {
+    "businessTypes": 12,
+    "problems": 48,
+    "zones": 49,
+    "techniques": 99,
+    "catalogPages": 30,
+    "publicPages": 45,
+    "newIllustrations": 14,
+    "responsiveImages": 42,
+    "optimizedImageBytes": 4001476
+  },
+  "checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "unitTests": 24,
+    "fullBrowserTests": 10,
+    "finalSolutionBrowserRecheck": 2,
+    "productionBuild": "passed",
+    "staticBuild": "passed",
+    "staticVerification": "all45routes+sitemap+CSP+basePath+desktop/mobile",
+    "sourceBackup": "hashes verified",
+    "imageProvenance": "all42 hashes verified",
+    "visualReview": "desktop1440 and phone390; final hero refinements verified"
+  },
+  "evidence": {
+    "staticVerification": "artifacts/migration/pages-build/verification.json",
+    "screenshots": "artifacts/solutions/qa",
+    "promptsAndImages": "artifacts/solutions/generated-images.json",
+    "research": "docs/catalog-expansion-research.md"
+  }
+}

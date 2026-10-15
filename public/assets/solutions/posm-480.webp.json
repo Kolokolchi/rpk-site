@@ -1,0 +1,11 @@
+{
+  "source": "artifacts/solutions/originals/posm.png",
+  "sourceSha256": "9258cadd766a212e873062b29b3ce0e797846b3fd749104a3146877a43d6ce21",
+  "generatedOn": "2026-10-15",
+  "kind": "illustration",
+  "generator": "built-in image_gen",
+  "promptManifest": "artifacts/solutions/generated-images.json",
+  "width": 480,
+  "height": 320,
+  "sha256": "186dbb77893974de478ddeae9a167897fed4efc3576f77d6d7432a977d8d3c04"
+}

@@ -1,0 +1,11 @@
+{
+  "source": "artifacts/solutions/originals/object-industrial.png",
+  "sourceSha256": "853f0a3ed90f8237da3b828657c8adba7c16adcebb6694c4ede30de3fe2a5ab8",
+  "generatedOn": "2026-10-15",
+  "kind": "illustration",
+  "generator": "built-in image_gen",
+  "promptManifest": "artifacts/solutions/generated-images.json",
+  "width": 480,
+  "height": 320,
+  "sha256": "347b51d89cb94b4d96e07fa62eed11144910ddb91c4b2a492ab0ffa2efe75963"
+}

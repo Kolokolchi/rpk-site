@@ -1,0 +1,11 @@
+{
+  "source": "artifacts/solutions/originals/object-fitness.png",
+  "sourceSha256": "df602affefda6c0035f971c7783c649dc482a861a930075deac2cdd4ade53b05",
+  "generatedOn": "2026-10-15",
+  "kind": "illustration",
+  "generator": "built-in image_gen",
+  "promptManifest": "artifacts/solutions/generated-images.json",
+  "width": 480,
+  "height": 320,
+  "sha256": "ab77e1c73e694930da5abf51fbf18f514189ffe8958c034a517822e1eafad4eb"
+}

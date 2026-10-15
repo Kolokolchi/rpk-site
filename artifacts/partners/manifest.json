@@ -1,0 +1,272 @@
+{
+  "source": "Doc/партнеры.cdr.zip",
+  "sourceSha256": "61d80207dafe658019e43c7d66005806aeead59e2f8b0f91d59c183a176bdde1",
+  "logos": [
+    {
+      "name": "Kusto Home",
+      "slug": "kusto-home",
+      "file": "/assets/partners/kusto-home.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 286,
+      "bytes": 8036,
+      "gzipBytes": 3781,
+      "sha256": "628b8d7502f293fcae14654e2d77a27d813636459b49d53497ca99e479a67251"
+    },
+    {
+      "name": "Freedom Bank",
+      "slug": "freedom-bank",
+      "file": "/assets/partners/freedom-bank.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 233,
+      "bytes": 3961,
+      "gzipBytes": 1734,
+      "sha256": "d9d8255b6e0b40e46f44b3360f0b6d26586ad607e27aa04a3690bdc4fe10c11c"
+    },
+    {
+      "name": "Basilic",
+      "slug": "basilic",
+      "file": "/assets/partners/basilic.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 408,
+      "bytes": 3102,
+      "gzipBytes": 1400,
+      "sha256": "5f0b190e8df49a017a1eae5ff46d4ec17fd8742be0e118c9df73fd88499c97b1"
+    },
+    {
+      "name": "Family Park",
+      "slug": "family-park",
+      "file": "/assets/partners/family-park.webp",
+      "format": "webp",
+      "width": 640,
+      "height": 331,
+      "bytes": 22256,
+      "gzipBytes": 22284,
+      "sha256": "9f6fd45b27c81ad2074cd591e6d174b6ecc170446de6408f9d11091bf757d19c"
+    },
+    {
+      "name": "Energo University",
+      "slug": "energo-university",
+      "file": "/assets/partners/energo-university.svg",
+      "format": "svg-with-embedded-background",
+      "width": 640,
+      "height": 268,
+      "bytes": 84928,
+      "gzipBytes": 60197,
+      "sha256": "075089b5f07e157e3d70c18758a52c2b453624fd197d78eee555b1242b04cfb7"
+    },
+    {
+      "name": "EPSON",
+      "slug": "epson",
+      "file": "/assets/partners/epson.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 151,
+      "bytes": 2706,
+      "gzipBytes": 1416,
+      "sha256": "f24e497e06ba6615d8b81ef0ea088b9f4d9362318940f7bc23b837ab4c119bb5"
+    },
+    {
+      "name": "Actual Optic",
+      "slug": "actual-optic",
+      "file": "/assets/partners/actual-optic.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 103,
+      "bytes": 5020,
+      "gzipBytes": 2431,
+      "sha256": "96736c294e95b1ed5d08aaae4e467e3394b0e88e92ae14e2530f10d0ad4128a5"
+    },
+    {
+      "name": "TAKAYAMA",
+      "slug": "takayama",
+      "file": "/assets/partners/takayama.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 148,
+      "bytes": 9962,
+      "gzipBytes": 4155,
+      "sha256": "92ec4a7edeac433a4e9ecb2163ff182ea083891183f6251d9251837911085be6"
+    },
+    {
+      "name": "MOTUL",
+      "slug": "motul",
+      "file": "/assets/partners/motul.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 198,
+      "bytes": 1507,
+      "gzipBytes": 880,
+      "sha256": "306e1f7c7616a5a9241a9b4c3e2ddfa6dec2bd13f4b81bdcdac4ee54a0a0dc69"
+    },
+    {
+      "name": "Castrol",
+      "slug": "castrol",
+      "file": "/assets/partners/castrol.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 150,
+      "bytes": 3106,
+      "gzipBytes": 1546,
+      "sha256": "bb09f9b0a92daf2d6f07d2b1a89720899667b34122ccb319c77d16f5cc65c96a"
+    },
+    {
+      "name": "Herbalife",
+      "slug": "herbalife",
+      "file": "/assets/partners/herbalife.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 177,
+      "bytes": 7548,
+      "gzipBytes": 1897,
+      "sha256": "8d6a539f1f6ba1857ad5bbebd101cabec40e858628e4c922bdc832fc01c6bbe2"
+    },
+    {
+      "name": "МИРТЕК",
+      "slug": "mirtek",
+      "file": "/assets/partners/mirtek.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 106,
+      "bytes": 2357,
+      "gzipBytes": 1290,
+      "sha256": "1684538e5d29b256ea1a74fdcbb958af01b3cace9f2353746a67b54f4c5a6695"
+    },
+    {
+      "name": "Oi-Qaragai",
+      "slug": "oi-qaragai",
+      "file": "/assets/partners/oi-qaragai.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 441,
+      "bytes": 103601,
+      "gzipBytes": 34210,
+      "sha256": "3389916c82f4de185f8dd9259a1fafd843de0cf78aa4459f88662a7d061470fc"
+    },
+    {
+      "name": "INVICTUS GO",
+      "slug": "invictus-go",
+      "file": "/assets/partners/invictus-go.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 172,
+      "bytes": 5164,
+      "gzipBytes": 2393,
+      "sha256": "0dce60d63de418f9c4be8b4310ddea19826b7066eb656a92360ad1ed1e86b041"
+    },
+    {
+      "name": "Fawori",
+      "slug": "fawori",
+      "file": "/assets/partners/fawori.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 640,
+      "bytes": 1885,
+      "gzipBytes": 946,
+      "sha256": "202ff97a6cf0301edfd76d0e5459bc599fad5d985be48c0a11d43f034a657eee"
+    },
+    {
+      "name": "AlinEX",
+      "slug": "alinex",
+      "file": "/assets/partners/alinex.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 296,
+      "bytes": 6372,
+      "gzipBytes": 3201,
+      "sha256": "7c1852396ad890d797f42162cdf01866c5caaedd7b5930d9ef5fe8ed403b3639"
+    },
+    {
+      "name": "Compass",
+      "slug": "compass",
+      "file": "/assets/partners/compass.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 147,
+      "bytes": 8685,
+      "gzipBytes": 3193,
+      "sha256": "9b00ce3d6eedb0b74a74029418a5cac36ad9d7d53f170ddb58cb411d4740a6d5"
+    },
+    {
+      "name": "Cosmart",
+      "slug": "cosmart",
+      "file": "/assets/partners/cosmart.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 158,
+      "bytes": 4088,
+      "gzipBytes": 2061,
+      "sha256": "55cbee26cd6aec6bc5b58fbc1d0db2e3dcb7d7866f0b3f94499d4d5edb3448b1"
+    },
+    {
+      "name": "Line Brew",
+      "slug": "line-brew",
+      "file": "/assets/partners/line-brew.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 460,
+      "bytes": 369874,
+      "gzipBytes": 143198,
+      "sha256": "46ac3ce64ed745361c16fe3e64f8c70a6e0f83341a50e1eccc5ac38499362a0c"
+    },
+    {
+      "name": "IMC",
+      "slug": "imc",
+      "file": "/assets/partners/imc.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 460,
+      "bytes": 9336,
+      "gzipBytes": 4202,
+      "sha256": "2ba182964b853fa3e2669450d4b8bc7edcdeaa307ea55879831f0d6a31f6064b"
+    },
+    {
+      "name": "Ankor",
+      "slug": "ankor",
+      "file": "/assets/partners/ankor.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 286,
+      "bytes": 7821,
+      "gzipBytes": 3526,
+      "sha256": "4062ab90c51db7c01d4690a61049ffd62c049a9ff07ff862eb9df204ef3d6bcd"
+    },
+    {
+      "name": "I'm",
+      "slug": "im",
+      "file": "/assets/partners/im.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 361,
+      "bytes": 2399,
+      "gzipBytes": 1302,
+      "sha256": "1ff1c3f404dcfd50e6e74cca49c1db9937801302d3407ac0a14d0e8800384673"
+    },
+    {
+      "name": "VISA",
+      "slug": "visa",
+      "file": "/assets/partners/visa.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 207,
+      "bytes": 1765,
+      "gzipBytes": 979,
+      "sha256": "80d11fc21ae1fb37c39c16672ed4852372b61e865827e3610cf0d1b71329fbca"
+    },
+    {
+      "name": "Corona Extra",
+      "slug": "corona-extra",
+      "file": "/assets/partners/corona-extra.svg",
+      "format": "svg",
+      "width": 640,
+      "height": 424,
+      "bytes": 11851,
+      "gzipBytes": 4888,
+      "sha256": "c7bafb29e3ea0193e912dfeca623e85223d8ab6961ece390fcc2f7972ed02bd9"
+    }
+  ],
+  "totalBytes": 687330,
+  "totalGzipBytes": 307110
+}

@@ -41,6 +41,17 @@ typography:
     fontWeight: 700
     lineHeight: 1.18
     letterSpacing: "-0.025em"
+  illustration-caption:
+    fontFamily: "Montserrat, Arial, sans-serif"
+    fontSize: "11px"
+    fontWeight: 400
+    lineHeight: 1.6
+  partner-headline:
+    fontFamily: "Montserrat, Arial, sans-serif"
+    fontSize: "clamp(24px, 2.5vw, 36px)"
+    fontWeight: 700
+    lineHeight: 1.22
+    letterSpacing: "-0.025em"
   title:
     fontFamily: "Montserrat, Arial, sans-serif"
     fontSize: "20px"
@@ -239,6 +250,24 @@ Catalog cards combine a 1.5-ratio image, honest image caption, body and separate
 ### Navigation
 
 Header links are compact white semibold labels, at least 44px tall, with orange hover and the common keyboard outline. The mobile menu has a near-black field and visible stroke. Article navigation has 46px minimum link height, 13px semibold labels and quiet tabular section numbers; it reflows above the article at 820px.
+
+### Partner logos
+
+The homepage client strip uses the 24 companies supplied in `Doc/партнеры.cdr.zip`, replacing the earlier text-only list at the user's request. Original brand shapes and colors are retained. The 22 vector marks and Energo University's vector/raster composite are optimized SVGs; the supplied Family Park bitmap is a 640px WebP. Assets and provenance are recorded in `artifacts/partners/manifest.json`.
+
+At the user's request, partners occupy one compact row instead of a grid. Each 188 × 92px logo field has a 14px inset and a fixed 64px-high image with `object-fit: contain`. Fields are white except the supplied white-letter Actual Optic, Herbalife, МИРТЕК and AlinEX variants, which use the existing #141414 graphite. Image alt text identifies each company without repeated visible captions. Section padding is 54px per side, or 38px on phones; the heading uses `clamp(24px, 2.5vw, 36px)`.
+
+Two identical flex groups, each with 16px gaps and trailing inset, create a seamless right-to-left CSS transform loop. The 240s linear cycle moves the 24 logos at 20.4px/s on both desktop and phones. Hover on a fine pointer, visible keyboard focus in the viewport, or the explicit pause button stops the track without resetting its position. Only the first group is exposed to assistive technology; the duplicate is inert. With reduced motion, the duplicate/control is hidden and the original row supports manual horizontal scrolling. No motion library or per-frame JavaScript is used for automatic movement.
+
+Mouse and touch dragging seek the existing CSS animation playhead in either direction. A 6px horizontal-intent threshold separates dragging from vertical page panning. Pointer capture retains the gesture beyond the row, and release/cancellation restores the prior animation playback rate while preserving explicit pause. Positive modulo wraps the animation phase without a blank edge or reset. Horizontal trackpad input, Shift + wheel and keyboard arrows also move the row; ordinary vertical wheel input scrolls the page. `touch-action: pan-y pinch-zoom` preserves vertical scrolling and zoom; reduced motion uses native touch scrolling plus mouse-dragged `scrollLeft`. The surface uses grab/grabbing cursors and suppresses native image dragging. An IntersectionObserver loads all 24 unique logo URLs when the row comes within 300px of the viewport so backward dragging can reveal any logo immediately.
+
+### Business solutions and expanded products
+
+The existing «У каждого бизнеса своя точка притяжения» image-card block now covers 12 business types. Preserve its four/two/one-column responsive grid, graphite bodies, clear image area, uppercase 20px card headings and orange action line. Every complete card links directly to its `/solutions/<slug>` page; it no longer acts as a portfolio-filter shortcut. The separate genuine portfolio retains its working filters.
+
+Business pages use the established reading layout: breadcrumb, two-column hero, sticky contents on desktop and a single reading column on phones. Each page contains four problem/solution explanations, four object zones with at least eight concrete techniques (the combined AЗС/autoservice page has a fifth fuel-station zone), material and selection notes, relevant product links, a six-item brief, four work stages and FAQ. Plain editorial rows and dividers organize the details; do not put nested cards around every paragraph. Technique subheadings use 18px/1.4 semibold Montserrat, and explanatory copy stays within 70ch.
+
+The product catalog expands from 24 to 30 entries with POSM, menu boards, acrylic displays, brand/photo zones, information boards and stencils/marking. Each has its own image and full technology page. Four incumbent object illustrations remain; eight new object scenes and six new product images are separate standalone generations, optimized into 480/960/1536px WebP variants. All are labeled as illustrations and their exact prompts, original files and hashes are retained under `artifacts/solutions/`. Genuine project photographs are never relabeled as examples of unverified projects.
 
 ### Error fallback
 

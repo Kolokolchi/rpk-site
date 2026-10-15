@@ -1,0 +1,11 @@
+{
+  "source": "artifacts/solutions/originals/object-hospitality.png",
+  "sourceSha256": "e5203db39fe184d0737c9bc11947ebcf6c8f91c38d5a6786be00ed1f98aacbb1",
+  "generatedOn": "2026-10-15",
+  "kind": "illustration",
+  "generator": "built-in image_gen",
+  "promptManifest": "artifacts/solutions/generated-images.json",
+  "width": 1536,
+  "height": 1024,
+  "sha256": "5aa31d50a76401244f4b631b86f4d26a4559555717a3bdb630e08a8c1d381b8e"
+}

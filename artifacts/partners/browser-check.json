@@ -1,0 +1,97 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "movedLeft": 12.578899999999997,
+      "accessibleLogos": 24,
+      "pauseButton": true,
+      "keyboardPause": true,
+      "hoverPause": true,
+      "seamDifference": 0.0409088134765625,
+      "height": 327.90625,
+      "viewportHeight": 92,
+      "groupWidths": [
+        4896,
+        4896.00048828125
+      ],
+      "logoTops": [
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625,
+        348.765625
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "movedLeft": 12.578600000000002,
+      "accessibleLogos": 24,
+      "pauseButton": true,
+      "keyboardPause": true,
+      "hoverPause": false,
+      "seamDifference": 0.04090690612792969,
+      "height": 312,
+      "viewportHeight": 92,
+      "groupWidths": [
+        4896,
+        4896
+      ],
+      "logoTops": [
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625,
+        315.65625
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    }
+  ],
+  "reducedMotion": {
+    "animation": "none",
+    "duplicateDisplay": "none",
+    "buttonDisplay": "none",
+    "overflowX": "auto"
+  },
+  "errors": []
+}

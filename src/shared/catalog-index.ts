@@ -1,3 +1,5 @@
+import { extraCatalogIndex } from "./catalog-extra-index";
+
 // Shared, small catalog metadata. Detailed page content loads only on a catalog page.
 export const catalogGroups = [
   { id: "signs", title: "Вывески и свет", description: "Название и логотип, которые помогают найти ваш бизнес." },
@@ -32,6 +34,7 @@ export const catalogIndex = [
   { slug: "cnc-and-laser", group: "production", title: "Фрезеровка и лазерная резка", summary: "Буквы, панели, детали и гравировка. Точная обработка по цифровому контуру.", image: "cnc-laser", imageAlt: "Фрезерная обработка панели и готовые акриловые детали", imageCaption: "Иллюстрация обработки рекламных деталей", imageKind: "illustration" },
   { slug: "metal-fabrication", group: "production", title: "Металлоконструкции", summary: "Каркасы, рамы, опоры и кронштейны. Несущая основа рекламного изделия.", image: "steel-frame", imageAlt: "Металлический каркас рекламной конструкции с раскосами и монтажными пластинами", imageCaption: "Иллюстрация изготовления несущего каркаса", imageKind: "illustration" },
   { slug: "installation-and-service", group: "production", title: "Монтаж и обслуживание", summary: "Установка, проверка, ремонт и обновление графики. Работа с готовой конструкцией.", image: "sign-installation", imageAlt: "Монтажник закрепляет вывеску на подготовленной металлической системе", imageCaption: "Иллюстрация монтажа рекламного изделия", imageKind: "illustration" },
+  ...extraCatalogIndex,
 ];
 
 export function catalogHref(slug: string) {

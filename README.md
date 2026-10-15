@@ -1,6 +1,6 @@
 # RPK.KZ
 
-Company website on Next.js 16.4 App Router, React 19.3 and Node.js 24.x. Application code uses strict TypeScript. The public black/graphite/orange identity, local Montserrat, genuine portfolio photographs and 24 technology pages are preserved.
+Company website on Next.js 16.4 App Router, React 19.3 and Node.js 24.x. Application code uses strict TypeScript. The public black/graphite/orange identity, local Montserrat and genuine portfolio photographs are preserved. The catalog contains 30 product/technology pages; 12 business-solution pages explain object zones, problems, practical techniques, materials and product choices.
 
 ## Content and structure
 
@@ -11,6 +11,9 @@ Make targeted changes in:
 - `src/shared/site-content.json`: homepage text, contacts, portfolio, clients and footer. Keep the recorded UUIDs; add a new UUID for a new portfolio/client item.
 - `src/shared/catalog-index.ts`: catalog names, summaries, groups and image metadata.
 - `src/catalog/catalog-content.ts`: explanatory technology pages.
+- `src/catalog/catalog-extra.ts` and `src/shared/catalog-extra-index.ts`: POSM and five additional product directions.
+- `src/shared/solution-index.ts`, `src/solutions/solutions-a.ts`, `src/solutions/solutions-b.ts`: object cards and detailed business solutions.
+- `src/solutions/`: server-rendered object overview, zone descriptions and cross-links to product pages.
 - `src/components/site/`: page structure and public interactions.
 - `src/styles/`: base, layout, catalog, fonts and identity layers, in that import order.
 - `public/assets/`: deployed images, fonts and logos. URL manifests live in `src/assets/*.ts`.
@@ -18,6 +21,8 @@ Make targeted changes in:
 Content is validated with a shared Zod schema and published as part of each build. Changes take effect on the next deployment. GCS, Redis, database accounts and editor secrets are not required. `data/site-content.json` is retained only as a legacy local copy and is not read by the application.
 
 Legacy logical image references such as `/src/assets/projects/*.jpg` are resolved to deployed `/assets/...` URLs. The original `src/assets` binaries and historical `artifacts/` records remain as development archives. Do not re-encode shipping images without restoring their provenance metadata afterwards.
+
+New solution/product illustrations are recorded in `artifacts/solutions/generated-images.json`, with saved originals and responsive 480/960/1536px WebP assets under `public/assets/solutions/`. `node scripts/prepare-solution-images.mjs` regenerates this set. Each image is labeled as an illustration in the interface. See `docs/object-solutions.md` for scope and `docs/catalog-expansion-research.md` for primary references. `/sitemap.xml` lists every public overview and detail page.
 
 ## Development
 

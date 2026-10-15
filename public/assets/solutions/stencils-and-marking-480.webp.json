@@ -1,0 +1,11 @@
+{
+  "source": "artifacts/solutions/originals/stencils-and-marking.png",
+  "sourceSha256": "56b1ddb85304680fb499eef8b9691d319cba5b3716591b54f88a13ca8e322bfa",
+  "generatedOn": "2026-10-15",
+  "kind": "illustration",
+  "generator": "built-in image_gen",
+  "promptManifest": "artifacts/solutions/generated-images.json",
+  "width": 480,
+  "height": 320,
+  "sha256": "b38c63828427d5bfb4e5d898d419210414fdce43ae33761b2a72e6c8a3945146"
+}

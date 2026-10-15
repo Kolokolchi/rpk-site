@@ -16,7 +16,7 @@ import CatalogOverview from "../src/components/site/CatalogOverview";
 test("every advertised catalog technology has complete content and valid related destinations", async () => {
   const content = { getCatalogDetail };
   const slugs = new Set(catalog.catalogIndex.map((entry) => entry.slug));
-  assert.equal(slugs.size, 24);
+  assert.equal(slugs.size, 30);
   assert.equal(
     new Set(catalog.catalogIndex.map((entry) => entry.image)).size,
     catalog.catalogIndex.length,

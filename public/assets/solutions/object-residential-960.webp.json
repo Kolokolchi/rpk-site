@@ -1,0 +1,11 @@
+{
+  "source": "artifacts/solutions/originals/object-residential.png",
+  "sourceSha256": "4d220ce586d6e804f27eb04a9ad454d52d39332c9ade7be28b9a87ceed3b82d6",
+  "generatedOn": "2026-10-15",
+  "kind": "illustration",
+  "generator": "built-in image_gen",
+  "promptManifest": "artifacts/solutions/generated-images.json",
+  "width": 960,
+  "height": 640,
+  "sha256": "bef339516e5e90a9a8d9ecc8d562bcbda80d26c899eb9d8dfd5275017af498a4"
+}

@@ -7,6 +7,9 @@ import { chromium } from "@playwright/test";
 
 const root = path.resolve("artifacts/migration/pages-build/out");
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "/rpk-site";
+const publicOrigin =
+  process.env.PUBLIC_ORIGIN || "https://kolokolchi.github.io";
+const publicUrl = (route) => new URL(basePath + route, publicOrigin).href;
 const mime = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css",
@@ -17,6 +20,7 @@ const mime = {
   ".jpg": "image/jpeg",
   ".woff2": "font/woff2",
   ".txt": "text/plain; charset=utf-8",
+  ".xml": "application/xml; charset=utf-8",
 };
 const server = http.createServer(async (request, response) => {
   try {
@@ -55,19 +59,43 @@ const server = http.createServer(async (request, response) => {
 await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
 const origin = `http://127.0.0.1:${server.address().port}`;
 const url = (route) => origin + basePath + route;
-const source = await fs.readFile("src/shared/catalog-index.ts", "utf8");
-const slugs = [...source.matchAll(/slug: "([a-z0-9-]+)"/g)].map(
-  (match) => match[1],
+const [catalogSources, solutionSource] = await Promise.all([
+  Promise.all(
+    ["src/shared/catalog-index.ts", "src/shared/catalog-extra-index.ts"].map(
+      (filename) => fs.readFile(filename, "utf8"),
+    ),
+  ),
+  fs.readFile("src/shared/solution-index.ts", "utf8"),
+]);
+const sourceSlugs = (source) =>
+  [...source.matchAll(/\bslug:\s*["']([a-z0-9-]+)["']/g)].map(
+    (match) => match[1],
+  );
+const slugs = catalogSources.flatMap(sourceSlugs);
+const solutionSlugs = sourceSlugs(solutionSource);
+assert.equal(
+  slugs.length,
+  30,
+  "Expected all catalog metadata, including extras",
 );
-assert.equal(slugs.length, 24);
+assert.equal(new Set(slugs).size, slugs.length, "Duplicate catalog slug");
+assert.equal(solutionSlugs.length, 12, "Expected all business solutions");
+assert.equal(
+  new Set(solutionSlugs).size,
+  solutionSlugs.length,
+  "Duplicate solution slug",
+);
+const routes = [
+  "/",
+  "/catalog/",
+  "/solutions/",
+  ...slugs.map((slug) => `/catalog/${slug}/`),
+  ...solutionSlugs.map((slug) => `/solutions/${slug}/`),
+];
 const browser = await chromium.launch({ headless: true });
 const proof = { routes: [], browser: [] };
 try {
-  for (const route of [
-    "/",
-    "/catalog/",
-    ...slugs.map((slug) => `/catalog/${slug}/`),
-  ]) {
+  for (const route of routes) {
     const response = await fetch(url(route));
     assert.equal(response.status, 200, route);
     const html = await response.text();
@@ -79,18 +107,47 @@ try {
       !html.includes("'unsafe-inline'") && !html.includes("'unsafe-eval'"),
       route,
     );
-    assert.ok(
-      !/(?:href|src)="\/(?!rpk-site(?:\/|"))/.test(html),
-      route + ": unprefixed resource URL",
-    );
+    const unprefixed = [...html.matchAll(/\b(?:href|src)="([^"]+)"/g)]
+      .map((match) => match[1])
+      .filter(
+        (resource) =>
+          resource.startsWith("/") &&
+          !resource.startsWith("//") &&
+          resource !== basePath &&
+          !resource.startsWith(basePath + "/"),
+      );
+    assert.deepEqual(unprefixed, [], route + ": unprefixed resource URL");
     proof.routes.push({ route, status: response.status });
   }
-  for (const route of ["/admin/", "/api/content/", "/catalog/not-a-service/"])
+  for (const route of [
+    "/admin/",
+    "/api/content/",
+    "/catalog/not-a-service/",
+    "/solutions/not-an-object/",
+  ])
     assert.equal((await fetch(url(route))).status, 404, route);
+  const sitemapResponse = await fetch(url("/sitemap.xml"));
+  assert.equal(sitemapResponse.status, 200, "sitemap.xml");
+  const sitemap = await sitemapResponse.text();
+  const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
+    (match) => match[1],
+  );
+  assert.equal(sitemapUrls.length, routes.length, "Sitemap route count");
+  assert.deepEqual(
+    sitemapUrls.toSorted(),
+    routes.map(publicUrl).toSorted(),
+    "Sitemap must list every overview and all 42 detail pages with the base path",
+  );
+  proof.sitemap = { status: sitemapResponse.status, urls: sitemapUrls.length };
   for (const [route, viewport] of [
     ["/", { width: 390, height: 844 }],
     ["/catalog/", { width: 1440, height: 900 }],
     ["/catalog/channel-letters/", { width: 1440, height: 900 }],
+    ["/catalog/posm/", { width: 1440, height: 900 }],
+    ["/catalog/posm/", { width: 390, height: 844 }],
+    ["/solutions/", { width: 1440, height: 900 }],
+    ["/solutions/retail/", { width: 1440, height: 900 }],
+    ["/solutions/retail/", { width: 390, height: 844 }],
   ]) {
     const page = await browser.newPage({ viewport, reducedMotion: "reduce" });
     const errors = [];
@@ -145,13 +202,55 @@ try {
       );
     }
     if (route === "/catalog/") {
+      assert.equal(await page.locator(".catalog-card").count(), slugs.length);
       await page.locator(".catalog-group-nav button").nth(1).click();
-      assert.ok((await page.locator(".catalog-card").count()) < 24);
+      const filteredCount = await page.locator(".catalog-card").count();
+      assert.ok(filteredCount > 0 && filteredCount < slugs.length);
+    }
+    if (route === "/" || route === "/solutions/") {
+      assert.equal(
+        await page.locator(".object-card").count(),
+        solutionSlugs.length,
+      );
+      for (const slug of solutionSlugs) {
+        assert.equal(
+          await page
+            .locator(`.object-card[href="${basePath}/solutions/${slug}"]`)
+            .count(),
+          1,
+          route + ": missing solution link " + slug,
+        );
+      }
+    }
+    if (route === "/solutions/retail/") {
+      for (const section of [
+        "problems",
+        "zones",
+        "products",
+        "brief",
+        "process",
+        "questions",
+      ]) {
+        assert.equal(await page.locator(`#${section} h2`).count(), 1);
+      }
+      assert.ok(
+        (await page.locator(".solution-problems article").count()) >= 3,
+      );
+      assert.ok((await page.locator(".solution-zone").count()) >= 3);
+      assert.ok(
+        (await page.locator(".solution-techniques section").count()) >= 6,
+      );
+      assert.ok(
+        (await page
+          .locator(`.solution-products a[href="${basePath}/catalog/posm"]`)
+          .count()) > 0,
+        "Retail solution must link to the POSM description",
+      );
     }
     const canonical = await page
       .locator('link[rel="canonical"]')
       .getAttribute("href");
-    assert.ok(canonical?.startsWith("https://kolokolchi.github.io/rpk-site/"));
+    assert.equal(canonical, publicUrl(route), route + ": canonical URL");
     assert.deepEqual(errors, [], route + ": browser/hydration/CSP errors");
     proof.browser.push({
       route,

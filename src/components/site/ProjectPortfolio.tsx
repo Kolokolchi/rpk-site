@@ -1,9 +1,7 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import type { SiteContent } from "../../shared/content-schema";
-import { bundledCatalogImages } from "../../assets/catalog-images";
 import { PublicText, PublicImage, SectionAtmosphere } from "./primitives";
 import { revealDelayClass } from "./site-utils";
 
@@ -61,59 +59,6 @@ export default function ProjectPortfolio({
     activeProjectGroup?.projects.length ?? portfolio.length;
   return (
     <>
-      {availableProjectGroups.length > 0 ? (
-        <section
-          className="objects-section section-transition reveal-on-scroll"
-          id="objects"
-          aria-labelledby="objects-title"
-        >
-          <div className="section-heading">
-            <h2 id="objects-title">
-              У каждого бизнеса
-              <br />
-              своя точка притяжения.
-            </h2>
-            <p className="section-description">
-              Найдите свой тип объекта и посмотрите подходящие работы — от
-              фасадной вывески до оформления пространства.
-            </p>
-          </div>
-          <div className="object-grid">
-            {availableProjectGroups.map((group) => {
-              const image = bundledCatalogImages[`object-${group.key}`];
-              return (
-                <a
-                  className="object-card"
-                  key={group.key}
-                  href="#portfolio"
-                  onClick={() => setProjectFilter(group.key)}
-                >
-                  <div className="object-card-image">
-                    <img
-                      src={image?.src}
-                      srcSet={image?.srcSet}
-                      sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1100px) 45vw, 310px"
-                      width={image?.width}
-                      height={image?.height}
-                      loading="lazy"
-                      decoding="async"
-                      alt={`Иллюстрация: ${group.title}`}
-                    />
-                    <small className="object-image-note">Иллюстрация</small>
-                  </div>
-                  <div className="object-card-copy">
-                    <h3>{group.title}</h3>
-                    <p>{group.text}</p>
-                    <span className="object-card-action">
-                      Смотреть работы <ArrowRight aria-hidden="true" />
-                    </span>
-                  </div>
-                </a>
-              );
-            })}
-          </div>
-        </section>
-      ) : null}
       <section
         className="portfolio-section section-transition reveal-on-scroll"
         id="portfolio"

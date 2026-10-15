@@ -14,9 +14,9 @@ export default function ServicesSection({ content }: { content: SiteContent }) {
       <div className="section-heading">
         <PublicText as="h2" id="services-title" value={content.servicesTitle} />
         <p className="section-description">
-          {catalogIndex.length} направления: от вывески и печати до оформления
-          пространства. Откройте нужный вид работ — внутри технология, варианты
-          применения и преимущества.
+          {catalogIndex.length} направлений: от вывески и печати до POSM и
+          оформления пространства. Откройте нужный вид работ — внутри
+          технология, варианты применения и преимущества.
         </p>
       </div>
 
