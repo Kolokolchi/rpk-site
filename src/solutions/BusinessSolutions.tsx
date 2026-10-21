@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { solutionHref, solutionIndex } from "../shared/solution-index";
 import { publicPath } from "../shared/public-path";
 import SolutionImage from "./SolutionImage";
+import ExpandableGrid from "../components/site/ExpandableGrid";
 
 export default function BusinessSolutions({
   overview = false,
@@ -34,7 +35,7 @@ export default function BusinessSolutions({
           материалы и приёмы подойдут.
         </p>
       </div>
-      <div className="object-grid">
+      <ExpandableGrid className="object-grid" preview={!overview}>
         {solutionIndex.map((entry) => (
           <a
             className="object-card"
@@ -54,7 +55,7 @@ export default function BusinessSolutions({
             </div>
           </a>
         ))}
-      </div>
+      </ExpandableGrid>
     </section>
   );
 }

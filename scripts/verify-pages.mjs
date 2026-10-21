@@ -144,6 +144,7 @@ try {
   proof.sitemap = { status: sitemapResponse.status, urls: sitemapUrls.length };
   for (const [route, viewport] of [
     ["/", { width: 390, height: 844 }],
+    ["/", { width: 1440, height: 900 }],
     ["/catalog/", { width: 1440, height: 900 }],
     ["/catalog/channel-letters/", { width: 1440, height: 900 }],
     ["/catalog/information-boards/", { width: 1440, height: 900 }],
@@ -160,6 +161,45 @@ try {
     });
     await page.goto(url(route), { waitUntil: "networkidle" });
     await page.evaluate(() => document.fonts.ready);
+    let preview;
+    if (route === "/") {
+      const firstRow = viewport.width > 1100 ? 4 : 1;
+      const catalog = page.locator(".catalog-index .expandable-grid");
+      const objects = page.locator("#objects .expandable-grid");
+      assert.equal(
+        await catalog.locator(".catalog-card:visible").count(),
+        firstRow,
+        "Homepage capabilities preview must show one row",
+      );
+      assert.equal(
+        await objects.locator(".object-card:visible").count(),
+        firstRow,
+        "Homepage object preview must show one row",
+      );
+      for (const group of [catalog, objects]) {
+        const toggle = group.locator(".grid-toggle");
+        assert.equal((await toggle.textContent()).trim(), "Показать всё");
+        assert.equal(await toggle.getAttribute("aria-expanded"), "false");
+        const controlledId = await toggle.getAttribute("aria-controls");
+        assert.ok(controlledId, "Preview toggle must identify its grid");
+        assert.equal(await group.locator(`[id="${controlledId}"]`).count(), 1);
+        await toggle.click();
+        assert.equal(await toggle.getAttribute("aria-expanded"), "true");
+      }
+      assert.equal(
+        await catalog.locator(".catalog-card:visible").count(),
+        slugs.length,
+      );
+      assert.equal(
+        await objects.locator(".object-card:visible").count(),
+        solutionSlugs.length,
+      );
+      preview = {
+        firstRow,
+        expandedCatalog: slugs.length,
+        expandedObjects: solutionSlugs.length,
+      };
+    }
     const height = await page.evaluate(
       () => document.documentElement.scrollHeight,
     );
@@ -185,16 +225,18 @@ try {
     );
     if (route === "/") {
       await page.evaluate(() => window.scrollTo(0, 0));
-      await page.locator(".menu-toggle").click();
-      assert.equal(
-        await page.locator(".menu-toggle").getAttribute("aria-expanded"),
-        "true",
-      );
-      await page.keyboard.press("Escape");
-      assert.equal(
-        await page.locator(".menu-toggle").getAttribute("aria-expanded"),
-        "false",
-      );
+      if (viewport.width <= 1100) {
+        await page.locator(".menu-toggle").click();
+        assert.equal(
+          await page.locator(".menu-toggle").getAttribute("aria-expanded"),
+          "true",
+        );
+        await page.keyboard.press("Escape");
+        assert.equal(
+          await page.locator(".menu-toggle").getAttribute("aria-expanded"),
+          "false",
+        );
+      }
       await page.locator(".project-filters button").nth(1).click();
       assert.equal(
         await page
@@ -205,7 +247,11 @@ try {
       );
     }
     if (route === "/catalog/") {
-      assert.equal(await page.locator(".catalog-card").count(), slugs.length);
+      assert.equal(
+        await page.locator(".catalog-card:visible").count(),
+        slugs.length,
+      );
+      assert.equal(await page.locator(".grid-toggle").count(), 0);
       await page.locator(".catalog-group-nav button").nth(1).click();
       const filteredCount = await page.locator(".catalog-card").count();
       assert.ok(filteredCount > 0 && filteredCount < slugs.length);
@@ -223,6 +269,13 @@ try {
           1,
           route + ": missing solution link " + slug,
         );
+      }
+      if (route === "/solutions/") {
+        assert.equal(
+          await page.locator(".object-card:visible").count(),
+          solutionSlugs.length,
+        );
+        assert.equal(await page.locator(".grid-toggle").count(), 0);
       }
     }
     if (route === "/solutions/retail/") {
@@ -263,6 +316,7 @@ try {
       brokenImages: broken.length,
       errors,
       canonical,
+      ...(preview ? { preview } : {}),
     });
     await page.close();
   }

@@ -9,12 +9,15 @@ import {
 } from "../shared/catalog-index";
 import { publicPath } from "../shared/public-path";
 import { readableHeading } from "../shared/typography";
+import ExpandableGrid from "../components/site/ExpandableGrid";
 import CatalogImage from "./CatalogImage";
 
 export default function CatalogIndex({
   headingLevel = 3,
+  preview = false,
 }: {
   headingLevel?: 2 | 3;
+  preview?: boolean;
 }) {
   const [activeGroup, setActiveGroup] = useState("all");
   const ItemHeading = headingLevel === 2 ? "h2" : "h3";
@@ -52,7 +55,12 @@ export default function CatalogIndex({
           : catalogGroups.find((group) => group.id === activeGroup)?.title}
         : {entries.length}
       </p>
-      <ul className="catalog-card-grid">
+      <ExpandableGrid
+        as="ul"
+        className="catalog-card-grid"
+        preview={preview}
+        key={activeGroup}
+      >
         {entries.map((entry) => {
           const group = catalogGroups.find((group) => group.id === entry.group);
           return (
@@ -87,7 +95,7 @@ export default function CatalogIndex({
             </li>
           );
         })}
-      </ul>
+      </ExpandableGrid>
     </div>
   );
 }

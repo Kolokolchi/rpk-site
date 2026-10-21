@@ -1,6 +1,110 @@
 import { test, expect } from "@playwright/test";
-import { catalogIndex } from "../src/shared/catalog-index";
+import { catalogGroups, catalogIndex } from "../src/shared/catalog-index";
+import { solutionIndex } from "../src/shared/solution-index";
 import sourceContent from "../src/shared/site-content.json" with { type: "json" };
+
+test("homepage groups show one responsive row and expand independently", async ({
+  page,
+}) => {
+  for (const [width, catalogColumns, objectColumns] of [
+    [1440, 4, 4],
+    [1100, 3, 2],
+    [820, 2, 2],
+    [600, 2, 1],
+    [520, 1, 1],
+    [390, 1, 1],
+  ]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/");
+    const catalog = page.locator(".catalog-index .expandable-grid");
+    const objects = page.locator("#objects .expandable-grid");
+    for (const [group, cards, columns] of [
+      [catalog, ".catalog-card", catalogColumns],
+      [objects, ".object-card", objectColumns],
+    ] as const) {
+      await expect(group.locator(`${cards}:visible`)).toHaveCount(columns);
+      const toggle = group.getByRole("button", {
+        name: "Показать всё",
+        exact: true,
+      });
+      await expect(toggle).toHaveAttribute("aria-expanded", "false");
+      const controlledId = await toggle.getAttribute("aria-controls");
+      expect(controlledId).toBeTruthy();
+      await expect(group.locator(`[id="${controlledId}"]`)).toHaveCount(1);
+      const rowTops = await group
+        .locator(`${cards}:visible`)
+        .evaluateAll((entries) =>
+          entries.map((entry) => Math.round(entry.getBoundingClientRect().top)),
+        );
+      expect(new Set(rowTops).size, `${width}px ${cards}: first row`).toBe(1);
+    }
+
+    const catalogToggle = catalog.locator(".grid-toggle");
+    const objectsToggle = objects.locator(".grid-toggle");
+    await catalogToggle.click();
+    await expect(catalog.locator(".catalog-card:visible")).toHaveCount(
+      catalogIndex.length,
+    );
+    await expect(catalogToggle).toHaveText("Свернуть");
+    await expect(catalogToggle).toHaveAttribute("aria-expanded", "true");
+    await expect(objects.locator(".object-card:visible")).toHaveCount(
+      objectColumns,
+    );
+    await objectsToggle.click();
+    await expect(objects.locator(".object-card:visible")).toHaveCount(
+      solutionIndex.length,
+    );
+    await expect(objectsToggle).toHaveAttribute("aria-expanded", "true");
+    await catalogToggle.click();
+    await expect(catalog.locator(".catalog-card:visible")).toHaveCount(
+      catalogColumns,
+    );
+    await expect(objects.locator(".object-card:visible")).toHaveCount(
+      solutionIndex.length,
+    );
+    await objectsToggle.click();
+    await expect(objects.locator(".object-card:visible")).toHaveCount(
+      objectColumns,
+    );
+  }
+});
+
+test("catalog filters reset the homepage preview and overview pages stay complete", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+  const catalog = page.locator(".catalog-index");
+  await catalog
+    .getByRole("button", { name: "Показать всё", exact: true })
+    .click();
+  await catalog
+    .getByRole("button", { name: catalogGroups[0].title, exact: true })
+    .click();
+  await expect(catalog.locator(".catalog-card:visible")).toHaveCount(4);
+  await expect(catalog.locator(".grid-toggle")).toHaveAttribute(
+    "aria-expanded",
+    "false",
+  );
+  await catalog
+    .getByRole("button", { name: "Показать всё", exact: true })
+    .click();
+  await expect(catalog.locator(".catalog-card:visible")).toHaveCount(
+    catalogIndex.filter((entry) => entry.group === catalogGroups[0].id).length,
+  );
+
+  await page.goto("/catalog");
+  await expect(page.locator(".catalog-card:visible")).toHaveCount(
+    catalogIndex.length,
+  );
+  await expect(page.locator(".grid-toggle")).toHaveCount(0);
+  await page.goto("/solutions");
+  await expect(page.locator(".object-card:visible")).toHaveCount(
+    solutionIndex.length,
+  );
+  await expect(page.locator(".grid-toggle")).toHaveCount(0);
+});
+
 test("all technology pages render content and metadata before JavaScript", async ({
   request,
 }) => {

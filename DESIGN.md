@@ -248,6 +248,8 @@ Category buttons are square surface-colored controls with 46px minimum height. H
 
 Catalog cards combine a 1.5-ratio image, honest image caption, body and separated action line. Their body uses frontmatter padding and a desktop 306px minimum height. Hover/focus changes surface to panel and the stroke to orange while retaining white titles; supporting text brightens slightly. The action arrow moves 3px on hover. At 520px maximum width the body minimum height is removed and padding becomes 26px 22px 22px. Project photographs keep their genuine-evidence role.
 
+On the homepage, the catalog and business-object grids initially show one responsive row. Each has an independent «Показать всё» / «Свернуть» button. Filtering the catalog resets its preview, and the toggle is hidden when the selected group already fits in one row. Dedicated catalog and object overview pages retain their full grids.
+
 ### Navigation
 
 Header links are compact white semibold labels, at least 44px tall, with orange hover and the common keyboard outline. The mobile menu has a near-black field and visible stroke. Article navigation has 46px minimum link height, 13px semibold labels and quiet tabular section numbers; it reflows above the article at 820px.

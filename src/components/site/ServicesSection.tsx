@@ -20,7 +20,7 @@ export default function ServicesSection({ content }: { content: SiteContent }) {
         </p>
       </div>
 
-      <CatalogIndex />
+      <CatalogIndex preview />
     </section>
   );
 }
