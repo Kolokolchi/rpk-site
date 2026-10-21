@@ -93,6 +93,7 @@ button, input, textarea, select { font-family: inherit; }
 .rpk-editorial.rpk-branded .object-card-image > span { color: #000; background: var(--brand-orange); font-size: 11px; font-weight: 700; }
 .rpk-editorial.rpk-branded .object-image-note { background: #161616; color: #c0c0c0; }
 .rpk-editorial.rpk-branded .project-card-content { padding: 27px; }
+.rpk-editorial.rpk-branded .portfolio-grid .project-card { grid-column: auto; min-width: 0; }
 .rpk-editorial.rpk-branded .project-card-content > p { color: var(--brand-orange); font-size: 11px; }
 .rpk-editorial.rpk-branded .project-card[hidden] { display: none !important; }
 .rpk-editorial.rpk-branded .project-filters button { color: #fff; background: #141414; border-color: #444; border-radius: 0; font: 600 12px/1.5 var(--display); min-height: 46px; }

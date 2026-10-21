@@ -423,3 +423,117 @@ test("headings keep fitting words whole and break oversized words readably", asy
     ).toBe(sample.expectedLines);
   }
 });
+
+test.describe("portfolio stays on the shared responsive grid", () => {
+  for (const width of [320, 390, 600, 601, 768, 1024, 1440, 1920, 2560]) {
+    test(`cards keep their column width and image proportions at ${width}px`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto("/");
+      await settleLayout(page);
+      const columns = width > 600 ? 2 : 1;
+
+      async function expectPortfolioGrid(
+        count: number,
+        unfilteredCardWidth?: number,
+      ) {
+        await expect(page.locator(".project-card:visible")).toHaveCount(count);
+        await settleLayout(page);
+        const layout = await page.locator("#portfolio").evaluate((section) => {
+          const rect = (element: Element) => {
+            const box = element.getBoundingClientRect();
+            return {
+              left: box.left,
+              right: box.right,
+              top: box.top,
+              width: box.width,
+              height: box.height,
+            };
+          };
+          const grid = section.querySelector(".portfolio-grid")!;
+          const style = getComputedStyle(grid);
+          return {
+            section: rect(section),
+            reference: rect(document.querySelector("#services")!),
+            grid: rect(grid),
+            columns: style.gridTemplateColumns.trim().split(/\s+/).length,
+            gap: parseFloat(style.columnGap),
+            cards: Array.from(grid.querySelectorAll(".project-card"))
+              .filter((card) => card.getBoundingClientRect().width > 0)
+              .map((card) => {
+                const image = card.querySelector(".project-media img")!;
+                return {
+                  ...rect(card),
+                  image: rect(image),
+                  objectFit: getComputedStyle(image).objectFit,
+                };
+              }),
+          };
+        });
+
+        expect(layout.section.width).toBeLessThanOrEqual(1321);
+        for (const edge of ["left", "right"] as const) {
+          expect(
+            Math.abs(layout.section[edge] - layout.reference[edge]),
+            `Portfolio ${edge} must align with the services section`,
+          ).toBeLessThanOrEqual(1);
+          expect(
+            Math.abs(layout.grid[edge] - layout.section[edge]),
+            `Portfolio grid ${edge} must stay inside its section`,
+          ).toBeLessThanOrEqual(1);
+        }
+        expect(layout.columns).toBe(columns);
+        const expectedCardWidth =
+          (layout.grid.width - layout.gap * (columns - 1)) / columns;
+        expect(layout.cards).toHaveLength(count);
+        for (const card of layout.cards) {
+          expect(
+            Math.abs(card.width - expectedCardWidth),
+            "Every project must occupy exactly one grid column",
+          ).toBeLessThanOrEqual(1);
+          if (unfilteredCardWidth !== undefined) {
+            expect(
+              Math.abs(card.width - unfilteredCardWidth),
+              "Filtering must not enlarge project cards",
+            ).toBeLessThanOrEqual(1);
+          }
+          expect(card.image.width / card.image.height).toBeCloseTo(1.55, 2);
+          expect(card.objectFit).toBe("cover");
+        }
+        if (count > 1) {
+          if (columns === 2) {
+            expect(
+              Math.abs(layout.cards[0].top - layout.cards[1].top),
+            ).toBeLessThanOrEqual(1);
+          } else {
+            expect(layout.cards[1].top).toBeGreaterThan(
+              layout.cards[0].top + layout.cards[0].height,
+            );
+          }
+        }
+        return layout.cards[0].width;
+      }
+
+      const unfilteredCardWidth = await expectPortfolioGrid(6);
+      for (const filter of [
+        { name: /^Магазины/, count: 1 },
+        { name: /^Кафе и рестораны/, count: 1 },
+        { name: /^Интерьеры/, count: 2 },
+      ]) {
+        await page.getByRole("button", { name: filter.name }).click();
+        await expectPortfolioGrid(filter.count, unfilteredCardWidth);
+      }
+      await page.getByRole("button", { name: /^Все работы/ }).click();
+      await expectPortfolioGrid(6, unfilteredCardWidth);
+
+      // Simulate an odd project count without changing application data. The
+      // third card must keep its slot instead of spanning the complete row.
+      await page.locator(".portfolio-grid").evaluate((grid) => {
+        for (const card of Array.from(grid.children).slice(3)) card.remove();
+        grid.setAttribute("data-visible-count", "3");
+      });
+      await expectPortfolioGrid(3, unfilteredCardWidth);
+    });
+  }
+});

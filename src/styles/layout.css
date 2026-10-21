@@ -356,13 +356,6 @@
 .rpk-editorial .portfolio-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 35px 28px; }
 .rpk-editorial .portfolio-grid .project-card { grid-column: auto; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
 .rpk-editorial .portfolio-grid .project-card[hidden] { display: none; }
-.rpk-editorial .portfolio-grid[data-visible-count="1"] .project-card:not([hidden]) {
-  display: grid;
-  grid-column: 1 / -1;
-  grid-template-columns: 1.2fr .8fr;
-  gap: 35px;
-  align-items: center;
-}
 .rpk-editorial .portfolio-grid .project-card img { width: 100%; height: auto; aspect-ratio: 1.55; object-fit: cover; }
 .rpk-editorial .project-media { overflow: hidden; border: 1px solid var(--ink); }
 .rpk-editorial .project-card-content { padding: 21px 0 0; }
@@ -587,7 +580,6 @@
   .rpk-editorial .object-card-copy { padding: 22px; }
   .rpk-editorial .object-card h3 { font-size: 27px; }
   .rpk-editorial .portfolio-grid { grid-template-columns: 1fr; gap: 31px; }
-  .rpk-editorial .portfolio-grid[data-visible-count="1"] .project-card:not([hidden]) { grid-template-columns: 1fr; gap: 0; }
   .rpk-editorial .project-filters { gap: 8px; }
   .rpk-editorial .project-filters button { padding: 10px 13px; font-size: 11px; gap: 9px; }
   .rpk-editorial .project-card h3 { font-size: 30px; }
