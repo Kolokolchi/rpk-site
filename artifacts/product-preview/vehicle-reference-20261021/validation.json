@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-21",
+  "reference": "User-provided white passenger minibus, image 2",
+  "sources": [
+    {
+      "path": "src/catalog/preview/VehicleGeometry.tsx",
+      "sha256": "b9294f8334819eb7b5a6a30268e579be89c892d138cb8335f954720a53fd0b9e"
+    },
+    {
+      "path": "src/catalog/preview/ObjectScene.tsx",
+      "sha256": "d43150a11c85b63b83ec751454c7821bb2f5163d3abe3002d8927c98fce68888"
+    },
+    {
+      "path": "src/catalog/preview/config.ts",
+      "sha256": "ab6f9b4a9822096d24cfeac5056b1296c6a2915ebe3004eec5d8447a5329ff3e"
+    }
+  ],
+  "branding": {
+    "width": [
+      126,
+      174
+    ],
+    "height": [
+      26,
+      32
+    ],
+    "z": [
+      86,
+      118
+    ],
+    "windowBottom": 120,
+    "wheelArchTop": 85,
+    "initialCentimeters": [
+      240,
+      50
+    ]
+  },
+  "wheel": {
+    "centerZ": 63,
+    "radius": 18,
+    "groundZ": 45
+  },
+  "validation": {
+    "productionBuild": "passed",
+    "lint": "passed",
+    "format": "passed",
+    "unitTests": 26,
+    "browserTests": 3,
+    "pagesRoutes": 42
+  }
+}

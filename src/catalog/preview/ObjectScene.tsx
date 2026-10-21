@@ -425,7 +425,7 @@ function Storefront({ cafe = false }: { cafe?: boolean }) {
   );
 }
 
-function Vehicle() {
+function Vehicle({ id }: { id: string }) {
   return (
     <g>
       <Floor road />
@@ -454,7 +454,7 @@ function Vehicle() {
           strokeWidth="3"
         />
       </IsoPlane>
-      <VehicleGeometry />
+      <VehicleGeometry id={id} />
     </g>
   );
 }
@@ -485,42 +485,43 @@ export default function ObjectScene({
 
   if (slug === "vehicle-branding") {
     const w = 126 + (settings.width - 120) * 0.2,
-      h = 48 + (settings.height - 50) * 0.16,
+      h = 26 + (settings.height - 50) * 0.06,
       x = -44 - w / 2,
-      z = 132 + h / 2;
+      z = 102 + h / 2;
     return (
       <g data-projection="isometric" data-scene={slug}>
         <g data-scene-context={slug}>
-          <Vehicle />
+          <Vehicle id={id} />
         </g>
         {part(
           1,
-          <IsoPlane x={x} y={47} z={z}>
+          <IsoPlane x={x} y={45} z={z}>
             <rect
               width={w}
               height={h}
-              fill="#667f89"
-              stroke="#a4b5ba"
-              strokeDasharray="4 3"
+              fill="#d4d9d1"
+              fillOpacity=".25"
+              stroke="#aab6ac"
+              strokeWidth=".6"
+              strokeDasharray="3 3"
             />
           </IsoPlane>,
         )}
         {part(
           2,
-          <IsoPlane x={x} y={47.5} z={z}>
+          <IsoPlane x={x} y={45.2} z={z}>
             {art(w, h)}
           </IsoPlane>,
         )}
         {part(
           3,
-          <IsoPlane x={x} y={48} z={z}>
+          <IsoPlane x={x} y={45.4} z={z}>
             <path
-              d={`M4 4H${w - 4}V${h - 4}H4Z`}
+              d={`M2 ${h - 1}H${w - 2}`}
               fill="none"
-              stroke="#c7d2d4"
-              strokeWidth="1"
+              stroke="#c9d0c7"
+              strokeWidth=".65"
             />
-            <path d={`M8 4h12L8 ${h - 4}H4Z`} fill="#f3f4ef" opacity=".2" />
           </IsoPlane>,
         )}
       </g>
