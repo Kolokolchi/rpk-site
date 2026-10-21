@@ -117,6 +117,17 @@ try {
           !resource.startsWith(basePath + "/"),
       );
     assert.deepEqual(unprefixed, [], route + ": unprefixed resource URL");
+    const whatsappLinks = [
+      ...html.matchAll(/\bhref="(https:\/\/wa\.me\/[^"]+)"/g),
+    ].map((match) => new URL(match[1].replaceAll("&amp;", "&")));
+    assert.ok(whatsappLinks.length > 0, route + ": missing WhatsApp links");
+    for (const link of whatsappLinks) {
+      assert.equal(
+        link.searchParams.get("text"),
+        "Здравствуйте! Нужен предварительный расчёт.",
+        route + ": incorrect WhatsApp message",
+      );
+    }
     proof.routes.push({ route, status: response.status });
   }
   for (const route of [

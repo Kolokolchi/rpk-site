@@ -49,7 +49,7 @@ export default function SolutionPage({
         ),
       )
     : [];
-  const whatsappHref = whatsappLink(contact.phone, solution.title);
+  const whatsappHref = whatsappLink(contact.phone);
   return (
     <article className="catalog-page solution-page">
       <nav className="catalog-breadcrumbs" aria-label="Путь по сайту">

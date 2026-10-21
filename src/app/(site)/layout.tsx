@@ -9,8 +9,6 @@ import SiteFooter from "../../components/site/SiteFooter";
 import FloatingContact from "../../components/site/FloatingContact";
 import ScrollReveal from "../../components/site/ScrollReveal";
 import { whatsappLink } from "../../components/site/site-utils";
-import { findCatalogEntry } from "../../shared/catalog-index";
-import { findSolutionEntry } from "../../shared/solution-index";
 import { publicSnapshot } from "../site-snapshot";
 
 export default async function PublicLayout({
@@ -23,10 +21,7 @@ export default async function PublicLayout({
   const pathname = staticExport
     ? "/"
     : (await headers()).get("x-rpk-path") || "/";
-  const whatsappHref = whatsappLink(
-    content.contact.phone,
-    findCatalogEntry(pathname)?.title ?? findSolutionEntry(pathname)?.title,
-  );
+  const whatsappHref = whatsappLink(content.contact.phone);
   return (
     <div className="site-shell rpk-editorial rpk-branded">
       <a className="skip-link" href="#top">

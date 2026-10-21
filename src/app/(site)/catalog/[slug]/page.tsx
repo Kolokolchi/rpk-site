@@ -32,7 +32,7 @@ export default async function Technology({ params }: Props) {
     <>
       <CatalogPage
         entry={entry}
-        whatsappHref={whatsappLink(content.contact.phone, entry.title)}
+        whatsappHref={whatsappLink(content.contact.phone)}
         contact={content.contact}
       />
       <StructuredData

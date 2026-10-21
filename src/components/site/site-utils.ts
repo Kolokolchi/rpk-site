@@ -55,23 +55,9 @@ export function phoneLink(phone: string) {
   return `tel:${phone.replace(/[^\d+]/g, "")}`;
 }
 
-export function whatsappLink(phone: string, serviceTitle?: string) {
-  const message = serviceTitle
-    ? [
-        "Здравствуйте! Нужен расчёт.",
-        `Услуга: ${serviceTitle}`,
-        "Адрес объекта: ",
-        "Примерные размеры: ",
-        "Фото отправлю следующим сообщением.",
-      ]
-    : [
-        "Здравствуйте! Нужен предварительный расчёт.",
-        "Тип объекта: ",
-        "Адрес: ",
-        "Примерные размеры: ",
-        "Фото отправлю следующим сообщением.",
-      ];
-  return `https://wa.me/${phone.replace(/\D/g, "")}?text=${encodeURIComponent(message.join("\n"))}`;
+export function whatsappLink(phone: string) {
+  const message = "Здравствуйте! Нужен предварительный расчёт.";
+  return `https://wa.me/${phone.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
 }
 
 export function safeExternalUrl(value: string) {

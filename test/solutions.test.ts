@@ -132,10 +132,17 @@ test("business cards open their own routes and every detailed section is publicl
       }
     for (const slug of solution.productSlugs)
       assert.ok(html.includes(`href="/catalog/${slug}"`));
-    assert.ok(
-      html.includes(encodeURIComponent(solution.title)),
-      entry.slug + ": missing WhatsApp context",
-    );
+    const whatsappLinks = [
+      ...html.matchAll(/href="(https:\/\/wa\.me\/[^"\s]+)"/g),
+    ];
+    assert.ok(whatsappLinks.length, entry.slug + ": missing WhatsApp links");
+    for (const [, href] of whatsappLinks) {
+      assert.equal(
+        new URL(href.replaceAll("&amp;", "&")).searchParams.get("text"),
+        "Здравствуйте! Нужен предварительный расчёт.",
+        entry.slug + ": incorrect WhatsApp template",
+      );
+    }
   }
   for (const path of [
     "/solutions/unknown",
