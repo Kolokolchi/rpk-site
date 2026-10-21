@@ -1,0 +1,390 @@
+{
+  "routes": [
+    {
+      "route": "/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/",
+      "status": 200
+    },
+    {
+      "route": "/solutions/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/channel-letters/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/lightboxes/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/projecting-signs/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/neon-signs/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/non-illuminated-signs/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/roof-signs/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/pylons/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/billboards/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/city-formats/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/pavement-signs/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/banner-printing/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/vinyl-graphics/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/window-graphics/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/uv-printing/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/vehicle-branding/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/facades-and-entrances/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/wayfinding/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/interior-branding/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/retail-and-pos/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/exhibition-stands/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/design-and-engineering/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/cnc-and-laser/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/metal-fabrication/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/installation-and-service/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/brand-zones/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/information-boards/",
+      "status": 200
+    },
+    {
+      "route": "/catalog/stencils-and-marking/",
+      "status": 200
+    },
+    {
+      "route": "/solutions/retail/",
+      "status": 200
+    },
+    {
+      "route": "/solutions/food/",
+      "status": 200
+    },
+    {
+      "route": "/solutions/interior/",
+      "status": 200
+    },
+    {
+      "route": "/solutions/campus/",
+      "status": 200
+    },
+    {
+      "route": "/solutions/healthcare/",
+      "status": 200
+    },
+    {
+      "route": "/solutions/hospitality/",
+      "status": 200
+    },
+    {
+      "route": "/solutions/fitness/",
+      "status": 200
+    },
+    {
+      "route": "/solutions/beauty/",
+      "status": 200
+    },
+    {
+      "route": "/solutions/automotive/",
+      "status": 200
+    },
+    {
+      "route": "/solutions/industrial/",
+      "status": 200
+    },
+    {
+      "route": "/solutions/residential/",
+      "status": 200
+    },
+    {
+      "route": "/solutions/events/",
+      "status": 200
+    }
+  ],
+  "browser": [
+    {
+      "route": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "brokenImages": 0,
+      "errors": [],
+      "canonical": "https://kolokolchi.github.io/rpk-site/",
+      "preview": {
+        "firstRow": 1,
+        "expandedCatalog": 27,
+        "expandedObjects": 12
+      }
+    },
+    {
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "errors": [],
+      "canonical": "https://kolokolchi.github.io/rpk-site/",
+      "preview": {
+        "firstRow": 4,
+        "expandedCatalog": 27,
+        "expandedObjects": 12
+      }
+    },
+    {
+      "route": "/catalog/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "errors": [],
+      "canonical": "https://kolokolchi.github.io/rpk-site/catalog/"
+    },
+    {
+      "route": "/catalog/channel-letters/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "errors": [],
+      "canonical": "https://kolokolchi.github.io/rpk-site/catalog/channel-letters/"
+    },
+    {
+      "route": "/catalog/projecting-signs/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "errors": [],
+      "canonical": "https://kolokolchi.github.io/rpk-site/catalog/projecting-signs/",
+      "interactivePreview": {
+        "family": "facade",
+        "projection": "isometric",
+        "text": "ПРОВЕРКА 01",
+        "width": 360,
+        "color": "#267c62",
+        "stages": [
+          0,
+          2,
+          3
+        ],
+        "upload": {
+          "format": "SVG",
+          "decoded": [
+            160,
+            320
+          ],
+          "fit": "cover",
+          "rotation": 90,
+          "circle": true
+        },
+        "environmentStable": true
+      }
+    },
+    {
+      "route": "/catalog/banner-printing/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "errors": [],
+      "canonical": "https://kolokolchi.github.io/rpk-site/catalog/banner-printing/",
+      "interactivePreview": {
+        "family": "production",
+        "projection": "isometric",
+        "text": "ПРОВЕРКА 01",
+        "width": 360,
+        "color": "#267c62",
+        "stages": [
+          0,
+          2,
+          3
+        ],
+        "upload": {
+          "format": "SVG",
+          "decoded": [
+            160,
+            320
+          ],
+          "fit": "cover",
+          "rotation": 90,
+          "circle": false
+        },
+        "environmentStable": true
+      }
+    },
+    {
+      "route": "/catalog/information-boards/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "errors": [],
+      "canonical": "https://kolokolchi.github.io/rpk-site/catalog/information-boards/",
+      "interactivePreview": {
+        "family": "object",
+        "projection": "isometric",
+        "text": "ПРОВЕРКА 01",
+        "width": 360,
+        "color": "#267c62",
+        "stages": [
+          0,
+          2,
+          3
+        ],
+        "upload": {
+          "format": "SVG",
+          "decoded": [
+            160,
+            320
+          ],
+          "fit": "cover",
+          "rotation": 90,
+          "circle": false
+        },
+        "environmentStable": true
+      }
+    },
+    {
+      "route": "/catalog/information-boards/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "brokenImages": 0,
+      "errors": [],
+      "canonical": "https://kolokolchi.github.io/rpk-site/catalog/information-boards/",
+      "interactivePreview": {
+        "family": "object",
+        "projection": "isometric",
+        "text": "ПРОВЕРКА 01",
+        "width": 360,
+        "color": "#267c62",
+        "stages": [
+          0,
+          2,
+          3
+        ],
+        "upload": {
+          "format": "SVG",
+          "decoded": [
+            160,
+            320
+          ],
+          "fit": "cover",
+          "rotation": 90,
+          "circle": false
+        },
+        "environmentStable": true
+      }
+    },
+    {
+      "route": "/solutions/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "errors": [],
+      "canonical": "https://kolokolchi.github.io/rpk-site/solutions/"
+    },
+    {
+      "route": "/solutions/retail/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "brokenImages": 0,
+      "errors": [],
+      "canonical": "https://kolokolchi.github.io/rpk-site/solutions/retail/"
+    },
+    {
+      "route": "/solutions/retail/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "brokenImages": 0,
+      "errors": [],
+      "canonical": "https://kolokolchi.github.io/rpk-site/solutions/retail/"
+    }
+  ],
+  "sitemap": {
+    "status": 200,
+    "urls": 42
+  }
+}

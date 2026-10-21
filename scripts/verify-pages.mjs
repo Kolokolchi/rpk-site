@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import http from "node:http";
 import assert from "node:assert/strict";
-import { chromium } from "@playwright/test";
+import { chromium, expect } from "@playwright/test";
 
 const root = path.resolve("artifacts/migration/pages-build/out");
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "/rpk-site";
@@ -92,6 +92,117 @@ const routes = [
   ...slugs.map((slug) => `/catalog/${slug}/`),
   ...solutionSlugs.map((slug) => `/solutions/${slug}/`),
 ];
+const interactiveRoutes = new Map([
+  ["/catalog/projecting-signs/", "facade"],
+  ["/catalog/information-boards/", "object"],
+  ["/catalog/banner-printing/", "production"],
+]);
+const artworkFixture = Buffer.from(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="160" height="320" viewBox="0 0 160 320"><rect width="160" height="320" fill="#ff8a00"/><circle cx="80" cy="100" r="45" fill="#153c51"/><path d="M30 235H130M30 265H100" stroke="#fff" stroke-width="12"/></svg>',
+);
+
+async function verifyInteractivePreview(page, route) {
+  const preview = page.locator(".product-preview");
+  const scene = preview.locator(".preview-scene");
+  await expect(scene.locator('[data-projection="isometric"]')).toHaveCount(1);
+  const context = scene.locator("[data-scene-context]");
+  await expect(context).toHaveCount(1);
+  const environment = await context.innerHTML();
+
+  await preview.locator('input[type="text"]').fill("ПРОВЕРКА 01");
+  await expect(
+    scene.locator("text").filter({ hasText: "ПРОВЕРКА 01" }).first(),
+  ).toBeVisible();
+  const width = preview
+    .locator('.preview-dimensions input[type="range"]')
+    .first();
+  const beforeResize = await scene.innerHTML();
+  await width.press("End");
+  await expect(width).toHaveValue("360");
+  assert.notEqual(
+    await scene.innerHTML(),
+    beforeResize,
+    route + ": dimensions must change the scene",
+  );
+  await preview.getByRole("button", { name: "Зелёный", exact: true }).click();
+  assert.ok(
+    await scene.locator('[fill="#267c62"], [stroke="#267c62"]').count(),
+    route + ": color must change the product",
+  );
+
+  const steps = preview.locator(".preview-steps button");
+  await steps.nth(0).click();
+  await expect(scene).toHaveAttribute("data-step", "0");
+  const hiddenParts = scene.locator('.preview-part[data-visible="false"]');
+  assert.ok(
+    await hiddenParts.count(),
+    route + ": assembly must have hidden product layers",
+  );
+  await expect
+    .poll(() =>
+      hiddenParts.evaluateAll((nodes) =>
+        nodes.every(
+          (node) => Number(window.getComputedStyle(node).opacity) === 0,
+        ),
+      ),
+    )
+    .toBe(true);
+  await steps.nth(2).click();
+  await expect(scene).toHaveAttribute("data-step", "2");
+  await steps.nth(3).click();
+  await expect(scene).toHaveAttribute("data-step", "3");
+
+  await preview.locator('input[type="file"]').setInputFiles({
+    name: "pages-preview.svg",
+    mimeType: "image/svg+xml",
+    buffer: artworkFixture,
+  });
+  const image = scene.locator("[data-artwork-viewport] image").first();
+  await expect(image).toHaveAttribute("href", /^blob:/);
+  const decoded = await image.evaluate(async (node) => {
+    const picture = new window.Image();
+    picture.src = node.getAttribute("href");
+    await picture.decode();
+    return [picture.naturalWidth, picture.naturalHeight];
+  });
+  assert.deepEqual(
+    decoded,
+    [160, 320],
+    route + ": SVG upload must decode in the exported site",
+  );
+  await expect(image).toHaveAttribute("preserveAspectRatio", "xMidYMid meet");
+  await preview
+    .getByRole("button", { name: "Заполнить поверхность", exact: true })
+    .click();
+  await expect(image).toHaveAttribute("preserveAspectRatio", "xMidYMid slice");
+  await preview
+    .getByRole("button", { name: "Повернуть 90°", exact: true })
+    .click();
+  await expect(
+    scene.locator("[data-artwork-transform]").first(),
+  ).toHaveAttribute("transform", /rotate\(90\)/);
+  const circle = route === "/catalog/projecting-signs/";
+  if (circle)
+    await expect(
+      scene.locator("[data-artwork-viewport] clipPath ellipse").first(),
+    ).toHaveCount(1);
+  assert.equal(
+    await context.innerHTML(),
+    environment,
+    route + ": settings and assembly must preserve the environment",
+  );
+  await expect(scene.locator('[data-projection="isometric"]')).toHaveCount(1);
+  return {
+    family: interactiveRoutes.get(route),
+    projection: "isometric",
+    text: "ПРОВЕРКА 01",
+    width: 360,
+    color: "#267c62",
+    stages: [0, 2, 3],
+    upload: { format: "SVG", decoded, fit: "cover", rotation: 90, circle },
+    environmentStable: true,
+  };
+}
 const browser = await chromium.launch({ headless: true });
 const proof = { routes: [], browser: [] };
 try {
@@ -158,6 +269,8 @@ try {
     ["/", { width: 1440, height: 900 }],
     ["/catalog/", { width: 1440, height: 900 }],
     ["/catalog/channel-letters/", { width: 1440, height: 900 }],
+    ["/catalog/projecting-signs/", { width: 1440, height: 900 }],
+    ["/catalog/banner-printing/", { width: 1440, height: 900 }],
     ["/catalog/information-boards/", { width: 1440, height: 900 }],
     ["/catalog/information-boards/", { width: 390, height: 844 }],
     ["/solutions/", { width: 1440, height: 900 }],
@@ -172,6 +285,9 @@ try {
     });
     await page.goto(url(route), { waitUntil: "networkidle" });
     await page.evaluate(() => document.fonts.ready);
+    const interactivePreview = interactiveRoutes.has(route)
+      ? await verifyInteractivePreview(page, route)
+      : undefined;
     let preview;
     if (route === "/") {
       const firstRow = viewport.width > 1100 ? 4 : 1;
@@ -328,6 +444,7 @@ try {
       errors,
       canonical,
       ...(preview ? { preview } : {}),
+      ...(interactivePreview ? { interactivePreview } : {}),
     });
     await page.close();
   }

@@ -15,6 +15,7 @@ import { publicPath } from "../shared/public-path";
 import { readableHeading } from "../shared/typography";
 import { getCatalogDetail, type CatalogMeta } from "./catalog-content";
 import CatalogImage, { catalogImageSource } from "./CatalogImage";
+import ProductPreview from "./preview/ProductPreview";
 
 const pageSections = [
   ["technology", "Устройство"],
@@ -92,6 +93,7 @@ export default function CatalogPage({ entry, whatsappHref, contact }: Props) {
           </figcaption>
         </figure>
       </header>
+      <ProductPreview key={entry.slug} slug={entry.slug} />
       <div className="catalog-highlights" aria-label="Основные преимущества">
         {detail.advantages.map((item) => (
           <div key={item.title}>

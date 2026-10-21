@@ -1,0 +1,11 @@
+{
+  "source": "artifacts/catalog/retail-pos-20261021/original.png",
+  "sourceSha256": "b5e357029664ba06dfe59b4f7c2165af1fc14dc77080fb7ec7bc7e35f0d25eab",
+  "generatedOn": "2026-10-21",
+  "kind": "illustration",
+  "generator": "built-in image_gen",
+  "promptManifest": "artifacts/catalog/retail-pos-20261021/generation.json",
+  "width": 480,
+  "height": 320,
+  "sha256": "07ed94317af930e99ad3be4d840ac119adc6a1d6517262196e993a3f866e281d"
+}

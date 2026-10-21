@@ -1,0 +1,52 @@
+{
+  "slug": "retail-island",
+  "kind": "illustration",
+  "mode": "built-in image_gen",
+  "generatedOn": "2026-10-21",
+  "prompt": "Use case: product-mockup.\nAsset type: one standalone horizontal 3:2 catalog illustration for RPK.KZ, category \"retail islands and point-of-sale displays\".\nPrimary request: replace the one real-world shopping-mall photo that does not match the rest of the catalog with a premium realistic product visualization belonging to its graphite / black / warm orange illustration series.\nSubject: a compact professional retail island, viewed from a slightly elevated three-quarter architectural angle. L-shaped charcoal retail counter on a low platform, one glazed merchandise showcase with clean physically correct glass edges, an upright point-of-sale shelving display with a few neutral unbranded packages, and a small integrated brand lightbox/fascia held by credible slim supports. Show the construction and point of use clearly, not just a generic reception desk. All counters, feet, shelving and sign supports must connect correctly.\nScene/backdrop: dark graphite seamless studio / architectural display floor with a subtle shadow and a calm charcoal background, the complete island occupies the image with breathing room on every side. No giant shopping mall, no people.\nStyle/medium: premium photorealistic architectural product rendering, realistic matte charcoal panels, brushed aluminum, glass, precise joints, restrained soft studio light. Match neighboring catalog assets showing black/orange modular exhibition stands and graphite reception identity. Real material detail, not a flat vector cartoon.\nColor palette: charcoal black and graphite, pale neutral product packages, restrained orange #ff8a00 inset front panels and edge accents, one softly illuminated neutral panel. Dark overall value.\nComposition: single coherent scene, full object contained, readable on a small 3:2 catalog card. Clean silhouette, moderate perspective, no severe wide-angle distortion, no collage.\nText: no readable text, no brand names, no watermarks, no typography overlay.\nAvoid: red retail fascia, Needstop branding, existing company trademarks, cacti, neon futuristic effects, a white background, disconnected supports, floating furniture or impossible joins.",
+  "sourcePath": "C:/Users/Kolok/.codex/generated_images/01a15dee-ab2f-7523-8826-54cea946b5bc/exec-1b4960ca-adc1-474d-aea6-ef231f7502da.png",
+  "workspaceOriginal": "artifacts/catalog/retail-pos-20261021/original.png",
+  "replacesCatalogReference": "/src/assets/projects/needstop-kiosk-01.jpg",
+  "sourceSha256": "b5e357029664ba06dfe59b4f7c2165af1fc14dc77080fb7ec7bc7e35f0d25eab",
+  "outputs": [
+    {
+      "path": "/assets/catalog/retail-island-480.webp",
+      "bytes": 16742,
+      "source": "artifacts/catalog/retail-pos-20261021/original.png",
+      "sourceSha256": "b5e357029664ba06dfe59b4f7c2165af1fc14dc77080fb7ec7bc7e35f0d25eab",
+      "generatedOn": "2026-10-21",
+      "kind": "illustration",
+      "generator": "built-in image_gen",
+      "promptManifest": "artifacts/catalog/retail-pos-20261021/generation.json",
+      "width": 480,
+      "height": 320,
+      "sha256": "07ed94317af930e99ad3be4d840ac119adc6a1d6517262196e993a3f866e281d"
+    },
+    {
+      "path": "/assets/catalog/retail-island-960.webp",
+      "bytes": 50072,
+      "source": "artifacts/catalog/retail-pos-20261021/original.png",
+      "sourceSha256": "b5e357029664ba06dfe59b4f7c2165af1fc14dc77080fb7ec7bc7e35f0d25eab",
+      "generatedOn": "2026-10-21",
+      "kind": "illustration",
+      "generator": "built-in image_gen",
+      "promptManifest": "artifacts/catalog/retail-pos-20261021/generation.json",
+      "width": 960,
+      "height": 640,
+      "sha256": "e0e553e868514b2ba7f37572f7793f28fb1749eb7d405d39a45d9122035c661f"
+    },
+    {
+      "path": "/assets/catalog/retail-island-1536.webp",
+      "bytes": 112406,
+      "source": "artifacts/catalog/retail-pos-20261021/original.png",
+      "sourceSha256": "b5e357029664ba06dfe59b4f7c2165af1fc14dc77080fb7ec7bc7e35f0d25eab",
+      "generatedOn": "2026-10-21",
+      "kind": "illustration",
+      "generator": "built-in image_gen",
+      "promptManifest": "artifacts/catalog/retail-pos-20261021/generation.json",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "1f0b2905bece7de3af79e31ee8dce370f88f1c36aabc23b7b5871429feeff21b"
+    }
+  ]
+}

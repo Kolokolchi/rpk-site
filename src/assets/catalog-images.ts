@@ -206,6 +206,17 @@ export const bundledCatalogImages: Record<
     width: 1536,
     height: 1024,
   },
+  "retail-island": {
+    src: publicPath("/assets/catalog/retail-island-1536.webp"),
+    srcSet: [480, 960, 1536]
+      .map(
+        (width) =>
+          `${publicPath(`/assets/catalog/retail-island-${width}.webp`)} ${width}w`,
+      )
+      .join(", "),
+    width: 1536,
+    height: 1024,
+  },
   "design-workbench": {
     src: image22w1536,
     srcSet: `${image22w480} 480w, ${image22w960} 960w, ${image22w1536} 1536w`,
