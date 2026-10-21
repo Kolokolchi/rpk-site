@@ -4,7 +4,7 @@ import { pageMetadata, StructuredData, siteUrl } from "../../metadata-utils";
 export async function generateMetadata() {
   return pageMetadata(
     "Каталог наружной рекламы и оформления | RPK.KZ",
-    `Направления наружной рекламы (${catalogIndex.length}): вывески, конструкции, печать, POSM, оформление и производство. Технологии, варианты применения и преимущества.`,
+    `Направления наружной рекламы (${catalogIndex.length}): вывески, конструкции, печать, оформление и производство. Технологии, варианты применения и преимущества.`,
     "/catalog",
   );
 }

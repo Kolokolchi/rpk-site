@@ -84,36 +84,6 @@ export const bundledExpansionImages: Record<
     width: 1536,
     height: 1024,
   },
-  posm: {
-    src: publicPath("/assets/solutions/posm-1536.webp"),
-    srcSet: [
-      publicPath("/assets/solutions/posm-480.webp") + " 480w",
-      publicPath("/assets/solutions/posm-960.webp") + " 960w",
-      publicPath("/assets/solutions/posm-1536.webp") + " 1536w",
-    ].join(", "),
-    width: 1536,
-    height: 1024,
-  },
-  "menu-boards": {
-    src: publicPath("/assets/solutions/menu-boards-1536.webp"),
-    srcSet: [
-      publicPath("/assets/solutions/menu-boards-480.webp") + " 480w",
-      publicPath("/assets/solutions/menu-boards-960.webp") + " 960w",
-      publicPath("/assets/solutions/menu-boards-1536.webp") + " 1536w",
-    ].join(", "),
-    width: 1536,
-    height: 1024,
-  },
-  "acrylic-displays": {
-    src: publicPath("/assets/solutions/acrylic-displays-1536.webp"),
-    srcSet: [
-      publicPath("/assets/solutions/acrylic-displays-480.webp") + " 480w",
-      publicPath("/assets/solutions/acrylic-displays-960.webp") + " 960w",
-      publicPath("/assets/solutions/acrylic-displays-1536.webp") + " 1536w",
-    ].join(", "),
-    width: 1536,
-    height: 1024,
-  },
   "brand-zones": {
     src: publicPath("/assets/solutions/brand-zones-1536.webp"),
     srcSet: [

@@ -200,6 +200,7 @@ The palette follows the supplied black/graphite/white/orange identity. Frontmatt
 - **Headline:** homepage section headings; at 600px maximum width use `clamp(28px,7.3vw,36px)` with 1.25 leading.
 - **Catalog display / headline:** article and overview titles versus section headings. At 600px maximum width they become `clamp(28px,7.3vw,42px)`/1.14 and `clamp(25px,6.5vw,32px)`/1.25.
 - **Title / card title:** compact section and card headings. Catalog card headings remain uppercase; categories beneath them are ordinary sentence case.
+- **Wrapping:** headings keep whole words whenever they fit. Five long Russian words have explicit discretionary hyphens inside width-limited inline blocks, so only words wider than their heading split. Automatic dictionary hyphenation is disabled; ordinary word and phrase wrapping stays intact.
 - **Body / reading body:** common supporting text and article prose. Reading measure is at most 70ch; the article lead is 18px/1.8, reducing to 16px on phones. Initial article prose is 18px/1.8, reducing to 17px on phones.
 - **Label / action / catalog action:** filters and two implemented action variants. Header navigation uses 600 weight at 10px with .04em tracking; this compact header setting is not a body-text role.
 
@@ -267,7 +268,7 @@ The existing «У каждого бизнеса своя точка притяж
 
 Business pages use the established reading layout: breadcrumb, two-column hero, sticky contents on desktop and a single reading column on phones. Each page contains four problem/solution explanations, four object zones with at least eight concrete techniques (the combined AЗС/autoservice page has a fifth fuel-station zone), material and selection notes, relevant product links, a six-item brief, four work stages and FAQ. Plain editorial rows and dividers organize the details; do not put nested cards around every paragraph. Technique subheadings use 18px/1.4 semibold Montserrat, and explanatory copy stays within 70ch.
 
-The product catalog expands from 24 to 30 entries with POSM, menu boards, acrylic displays, brand/photo zones, information boards and stencils/marking. Each has its own image and full technology page. Four incumbent object illustrations remain; eight new object scenes and six new product images are separate standalone generations, optimized into 480/960/1536px WebP variants. All are labeled as illustrations and their exact prompts, original files and hashes are retained under `artifacts/solutions/`. Genuine project photographs are never relabeled as examples of unverified projects.
+The product catalog contains 27 entries, including brand/photo zones, information boards and stencils/marking. Each has its own image and full technology page. Four incumbent object illustrations remain; eight new object scenes and three current product images are separate standalone generations, optimized into 480/960/1536px WebP variants. All are labeled as illustrations and their exact prompts, original files and hashes are retained under `artifacts/solutions/`. Historical image records remain archived. Genuine project photographs are never relabeled as examples of unverified projects.
 
 ### Error fallback
 

@@ -9,6 +9,7 @@ import type { SiteContent } from "../shared/content-schema";
 import { catalogHref, catalogIndex } from "../shared/catalog-index";
 import { solutionHref, solutionIndex } from "../shared/solution-index";
 import { publicPath } from "../shared/public-path";
+import { readableHeading } from "../shared/typography";
 import { whatsappLink } from "../components/site/site-utils";
 import { PublicImage } from "../components/site/primitives";
 import CatalogImage from "../catalog/CatalogImage";
@@ -183,7 +184,7 @@ export default function SolutionPage({
                           : "Иллюстрация технологии"}
                       </figcaption>
                     </figure>
-                    <h3>{entry.title}</h3>
+                    <h3>{readableHeading(entry.title)}</h3>
                     <p>{entry.summary}</p>
                     <span>
                       Открыть описание <ArrowRight aria-hidden="true" />

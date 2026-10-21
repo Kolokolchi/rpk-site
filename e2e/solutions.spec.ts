@@ -28,15 +28,20 @@ test("all object cards open complete dedicated pages with metadata and no editor
   await expect(page).toHaveURL(/\/solutions\/retail$/);
   await expect(page.locator("h1")).toContainText("Магазины");
   await expect(page.locator(".solution-zone")).toHaveCount(4);
-  await page.locator('#products a[href="/catalog/posm"]').click();
-  await expect(page.locator("h1")).toContainText("POSM");
+  await page.locator('#products a[href="/catalog/information-boards"]').click();
+  await expect(page.locator("h1")).toContainText("Информационные стенды");
   for (const entry of extraCatalogIndex)
     expect((await request.get(`/catalog/${entry.slug}`)).status()).toBe(200);
   expect((await request.get("/solutions/unknown-object")).status()).toBe(404);
   const sitemap = await request.get("/sitemap.xml");
   expect(sitemap.status()).toBe(200);
   expect(await sitemap.text()).toContain("/solutions/events");
-  expect(await sitemap.text()).toContain("/catalog/posm");
+  const sitemapText = await sitemap.text();
+  expect(sitemapText).toContain("/catalog/information-boards");
+  for (const slug of ["posm", "menu-boards", "acrylic-displays"]) {
+    expect((await request.get(`/catalog/${slug}`)).status()).toBe(404);
+    expect(sitemapText).not.toContain(`/catalog/${slug}`);
+  }
 });
 
 test("expanded solutions work on desktop and phone without overflow or missing images", async ({
@@ -51,7 +56,7 @@ test("expanded solutions work on desktop and phone without overflow or missing i
       "/solutions/retail",
       "/solutions/healthcare",
       "/solutions/events",
-      "/catalog/posm",
+      "/catalog/information-boards",
     ]) {
       await page.goto(route);
       await page.evaluate(async () => {

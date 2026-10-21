@@ -16,7 +16,7 @@ import CatalogOverview from "../src/components/site/CatalogOverview";
 test("every advertised catalog technology has complete content and valid related destinations", async () => {
   const content = { getCatalogDetail };
   const slugs = new Set(catalog.catalogIndex.map((entry) => entry.slug));
-  assert.equal(slugs.size, 30);
+  assert.equal(slugs.size, 27);
   assert.equal(
     new Set(catalog.catalogIndex.map((entry) => entry.image)).size,
     catalog.catalogIndex.length,
@@ -205,7 +205,10 @@ test("each catalog page server renders its four process steps before client Java
         entry.slug + ": missing process explanation",
       );
     }
-    assert.ok(html.includes("<h1>" + entry.title + "</h1>"));
+    const headingText = html
+      .match(/<h1>(.*?)<\/h1>/s)?.[1]
+      .replace(/<[^>]+>|\u00ad/g, "");
+    assert.equal(headingText, entry.title);
     for (const section of [
       "technology",
       "variants",
@@ -247,6 +250,9 @@ test("canonical catalog destinations accept direct URLs and reject unknown or ne
     assert.ok(overview.includes('href="' + url + '"'));
   }
   for (const url of [
+    "/catalog/posm",
+    "/catalog/menu-boards",
+    "/catalog/acrylic-displays",
     "/catalog/not-a-service",
     "/catalog/server.js",
     "/catalog/channel-letters/extra",

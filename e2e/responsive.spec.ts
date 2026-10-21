@@ -257,7 +257,7 @@ test.describe("responsive layout regression", () => {
     { route: "/", width: 390 },
     { route: "/", width: 768 },
     { route: "/", width: 1440 },
-    { route: "/catalog/posm", width: 390 },
+    { route: "/catalog/information-boards", width: 390 },
     { route: "/solutions/retail", width: 390 },
   ]) {
     test(`${route} reflows with 200% text at ${width}px`, async ({ page }) => {
@@ -343,5 +343,83 @@ test.describe("responsive layout regression", () => {
       await expect(navigation).toBeHidden();
       await expect(toggle).toBeFocused();
     });
+  }
+});
+
+test("headings keep fitting words whole and break oversized words readably", async ({
+  page,
+}) => {
+  for (const sample of [
+    {
+      route: "/catalog",
+      width: 320,
+      selector: '.catalog-card[href$="/catalog/channel-letters"] h2',
+      word: "Объёмные",
+      expectedLines: 1,
+    },
+    {
+      route: "/catalog",
+      width: 320,
+      selector: '.catalog-card[href$="/catalog/information-boards"] h2',
+      word: "Информационные",
+      expectedLines: 2,
+    },
+    {
+      route: "/catalog",
+      width: 390,
+      selector: '.catalog-card[href$="/catalog/information-boards"] h2',
+      word: "Информационные",
+      expectedLines: 1,
+    },
+    {
+      route: "/catalog/metal-fabrication",
+      width: 390,
+      selector: "h1",
+      word: "Металлоконструкции",
+      expectedLines: 2,
+    },
+    {
+      route: "/catalog/metal-fabrication",
+      width: 768,
+      selector: "h1",
+      word: "Металлоконструкции",
+      expectedLines: 1,
+    },
+  ]) {
+    await page.setViewportSize({ width: sample.width, height: 900 });
+    await page.goto(sample.route);
+    await settleLayout(page);
+    const lineCount = await page
+      .locator(sample.selector)
+      .evaluate((heading, word) => {
+        const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+        let node: Node | null;
+        while ((node = walker.nextNode())) {
+          const text = node.textContent ?? "";
+          for (const match of text.matchAll(/[\p{L}\u00ad]+/gu)) {
+            if (match[0].replaceAll("\u00ad", "") !== word) continue;
+            const lineTops = new Set<number>();
+            for (
+              let offset = match.index;
+              offset < match.index + match[0].length;
+              offset++
+            ) {
+              // A discretionary hyphen can share the next glyph's rectangle.
+              // Measure the actual letters to count the word's rendered lines.
+              if (text[offset] === "\u00ad") continue;
+              const range = document.createRange();
+              range.setStart(node, offset);
+              range.setEnd(node, offset + 1);
+              lineTops.add(Math.round(range.getBoundingClientRect().top));
+            }
+            return lineTops.size;
+          }
+        }
+        return null;
+      }, sample.word);
+    expect(
+      lineCount,
+      `${sample.word} at ${sample.width}px on ${sample.route}`,
+    ).toBe(sample.expectedLines);
   }
 });

@@ -75,7 +75,7 @@ const slugs = catalogSources.flatMap(sourceSlugs);
 const solutionSlugs = sourceSlugs(solutionSource);
 assert.equal(
   slugs.length,
-  30,
+  27,
   "Expected all catalog metadata, including extras",
 );
 assert.equal(new Set(slugs).size, slugs.length, "Duplicate catalog slug");
@@ -123,6 +123,9 @@ try {
     "/admin/",
     "/api/content/",
     "/catalog/not-a-service/",
+    "/catalog/posm/",
+    "/catalog/menu-boards/",
+    "/catalog/acrylic-displays/",
     "/solutions/not-an-object/",
   ])
     assert.equal((await fetch(url(route))).status, 404, route);
@@ -136,15 +139,15 @@ try {
   assert.deepEqual(
     sitemapUrls.toSorted(),
     routes.map(publicUrl).toSorted(),
-    "Sitemap must list every overview and all 42 detail pages with the base path",
+    "Sitemap must list every overview and all 39 detail pages with the base path",
   );
   proof.sitemap = { status: sitemapResponse.status, urls: sitemapUrls.length };
   for (const [route, viewport] of [
     ["/", { width: 390, height: 844 }],
     ["/catalog/", { width: 1440, height: 900 }],
     ["/catalog/channel-letters/", { width: 1440, height: 900 }],
-    ["/catalog/posm/", { width: 1440, height: 900 }],
-    ["/catalog/posm/", { width: 390, height: 844 }],
+    ["/catalog/information-boards/", { width: 1440, height: 900 }],
+    ["/catalog/information-boards/", { width: 390, height: 844 }],
     ["/solutions/", { width: 1440, height: 900 }],
     ["/solutions/retail/", { width: 1440, height: 900 }],
     ["/solutions/retail/", { width: 390, height: 844 }],
@@ -242,9 +245,11 @@ try {
       );
       assert.ok(
         (await page
-          .locator(`.solution-products a[href="${basePath}/catalog/posm"]`)
+          .locator(
+            `.solution-products a[href="${basePath}/catalog/information-boards"]`,
+          )
           .count()) > 0,
-        "Retail solution must link to the POSM description",
+        "Retail solution must link to the information board description",
       );
     }
     const canonical = await page

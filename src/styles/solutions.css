@@ -13,7 +13,7 @@
 .rpk-editorial.rpk-branded .solution-zone { margin-top: 44px; padding-top: 38px; border-top: 1px solid var(--brand-line); scroll-margin-top: 112px; }
 .rpk-editorial.rpk-branded .solution-zone > h3 { font: 700 clamp(20px, 1.65vw, 25px)/1.35 var(--display); letter-spacing: -.02em; margin: 0 0 14px; }
 .rpk-editorial.rpk-branded .solution-zone-lead { margin: 0 0 28px; }
-.rpk-editorial.rpk-branded .solution-techniques { display: grid; gap: 30px; }
+.rpk-editorial.rpk-branded .solution-techniques { display: grid; grid-template-columns: minmax(0, 1fr); gap: 30px; }
 .rpk-editorial.rpk-branded .solution-techniques > section { padding: 0 0 28px; border-bottom: 1px solid var(--brand-line); }
 .rpk-editorial.rpk-branded .solution-techniques > section:last-child { border: 0; padding: 0; }
 .rpk-editorial.rpk-branded .solution-techniques h4 { font: 600 18px/1.4 var(--display); margin: 0 0 12px; color: var(--brand-white); }

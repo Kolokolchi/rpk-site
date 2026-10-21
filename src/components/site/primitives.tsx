@@ -1,4 +1,5 @@
 import { createElement } from "react";
+import { readableHeading } from "../../shared/typography";
 import { resolveImageSource, siteImageSource } from "./site-utils";
 
 type PublicTextProps = {
@@ -32,7 +33,13 @@ export function PublicText({
     ) : (
       value
     );
-  return createElement(as, { className, id }, text);
+  return createElement(
+    as,
+    { className, id },
+    typeof text === "string" && /^h[1-6]$/.test(as)
+      ? readableHeading(text)
+      : text,
+  );
 }
 
 type PublicImageProps = {

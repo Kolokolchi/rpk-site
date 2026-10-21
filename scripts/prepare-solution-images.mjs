@@ -9,7 +9,21 @@ const manifestPath = path.join(
   root,
   "artifacts/solutions/generated-images.json",
 );
-const manifest = JSON.parse(await fs.readFile(manifestPath, "utf8"));
+const allIllustrations = JSON.parse(await fs.readFile(manifestPath, "utf8"));
+const activeImageKeys = new Set(
+  (
+    await Promise.all(
+      ["src/shared/solution-index.ts", "src/shared/catalog-extra-index.ts"].map(
+        (filename) => fs.readFile(path.join(root, filename), "utf8"),
+      ),
+    )
+  ).flatMap((source) =>
+    [...source.matchAll(/\bimage:\s*"([a-z0-9-]+)"/g)].map((match) => match[1]),
+  ),
+);
+const manifest = allIllustrations.filter((item) =>
+  activeImageKeys.has(item.slug),
+);
 const originals = path.join(root, "artifacts/solutions/originals");
 const output = path.join(root, "public/assets/solutions");
 await fs.mkdir(originals, { recursive: true });
@@ -80,7 +94,10 @@ for (let index = 0; index < manifest.length; index++) {
     top: top + 200,
   });
 }
-await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
+await fs.writeFile(
+  manifestPath,
+  JSON.stringify(allIllustrations, null, 2) + "\n",
+);
 await fs.writeFile(
   path.join(root, "src/assets/expansion-images.ts"),
   `import { publicPath } from "../shared/public-path";\n\nexport const bundledExpansionImages: Record<string, { src: string; srcSet: string; width: number; height: number }> = {\n${definitions.join("\n")}\n};\n`,

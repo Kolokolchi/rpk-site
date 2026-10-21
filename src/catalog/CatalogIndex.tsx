@@ -8,6 +8,7 @@ import {
   catalogIndex,
 } from "../shared/catalog-index";
 import { publicPath } from "../shared/public-path";
+import { readableHeading } from "../shared/typography";
 import CatalogImage from "./CatalogImage";
 
 export default function CatalogIndex({
@@ -72,7 +73,7 @@ export default function CatalogIndex({
                   </figcaption>
                 </figure>
                 <div className="catalog-card-body">
-                  <ItemHeading>{entry.title}</ItemHeading>
+                  <ItemHeading>{readableHeading(entry.title)}</ItemHeading>
                   <p className="catalog-card-category">{group?.title}</p>
                   <p className="catalog-card-description">{entry.summary}</p>
                   <div className="catalog-card-footer">

@@ -12,6 +12,7 @@ import {
   catalogIndex,
 } from "../shared/catalog-index";
 import { publicPath } from "../shared/public-path";
+import { readableHeading } from "../shared/typography";
 import { getCatalogDetail, type CatalogMeta } from "./catalog-content";
 import CatalogImage, { catalogImageSource } from "./CatalogImage";
 
@@ -58,7 +59,7 @@ export default function CatalogPage({ entry, whatsappHref, contact }: Props) {
       </nav>
       <header className="catalog-hero">
         <div className="catalog-hero-copy">
-          <h1>{entry.title}</h1>
+          <h1>{readableHeading(entry.title)}</h1>
           <p className="catalog-lead">{entry.summary}</p>
           <a
             className="primary-button"
@@ -283,7 +284,7 @@ export default function CatalogPage({ entry, whatsappHref, contact }: Props) {
                       : "Иллюстрация технологии"}
                   </figcaption>
                 </figure>
-                <h3>{item.title}</h3>
+                <h3>{readableHeading(item.title)}</h3>
                 <p>{item.summary}</p>
                 <span>
                   Открыть страницу <ArrowRight aria-hidden="true" />
