@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import ArtworkImage from "./ArtworkImage";
 import VehicleGeometry from "./VehicleGeometry";
+import VehicleArtwork from "./VehicleArtwork";
+import { defaultSettings } from "./config";
 import { iso, isoPoints, IsoBox, IsoLine, IsoPlane } from "./isometric";
 import type { PreviewSettings, SceneProps } from "./types";
 
@@ -425,7 +427,7 @@ function Storefront({ cafe = false }: { cafe?: boolean }) {
   );
 }
 
-function Vehicle({ id }: { id: string }) {
+function VehicleContext() {
   return (
     <g>
       <Floor road />
@@ -454,7 +456,6 @@ function Vehicle({ id }: { id: string }) {
           strokeWidth="3"
         />
       </IsoPlane>
-      <VehicleGeometry id={id} />
     </g>
   );
 }
@@ -484,46 +485,40 @@ export default function ObjectScene({
   const { color, lit, text } = settings;
 
   if (slug === "vehicle-branding") {
-    const w = 126 + (settings.width - 120) * 0.2,
-      h = 26 + (settings.height - 50) * 0.06,
-      x = -44 - w / 2,
-      z = 102 + h / 2;
+    const hoodSettings =
+      settings.vehicleHood ?? defaultSettings(slug).vehicleHood!;
     return (
       <g data-projection="isometric" data-scene={slug}>
         <g data-scene-context={slug}>
-          <Vehicle id={id} />
+          <VehicleContext />
         </g>
-        {part(
-          1,
-          <IsoPlane x={x} y={45} z={z}>
-            <rect
-              width={w}
-              height={h}
-              fill="#d4d9d1"
-              fillOpacity=".25"
-              stroke="#aab6ac"
-              strokeWidth=".6"
-              strokeDasharray="3 3"
+        <VehicleGeometry
+          id={id}
+          sideIncludesWindows={
+            settings.enabled !== false &&
+            settings.includeWindows === true &&
+            step >= 2 &&
+            !exploded
+          }
+          sideArtwork={
+            <VehicleArtwork
+              surface="side"
+              settings={settings}
+              step={step}
+              exploded={exploded}
+              id={id}
             />
-          </IsoPlane>,
-        )}
-        {part(
-          2,
-          <IsoPlane x={x} y={45.2} z={z}>
-            {art(w, h)}
-          </IsoPlane>,
-        )}
-        {part(
-          3,
-          <IsoPlane x={x} y={45.4} z={z}>
-            <path
-              d={`M2 ${h - 1}H${w - 2}`}
-              fill="none"
-              stroke="#c9d0c7"
-              strokeWidth=".65"
+          }
+          hoodArtwork={
+            <VehicleArtwork
+              surface="hood"
+              settings={hoodSettings}
+              step={step}
+              exploded={exploded}
+              id={id}
             />
-          </IsoPlane>,
-        )}
+          }
+        />
       </g>
     );
   }

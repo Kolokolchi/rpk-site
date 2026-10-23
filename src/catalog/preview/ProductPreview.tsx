@@ -44,14 +44,36 @@ export default function ProductPreview({ slug }: Props) {
       urls.forEach((url) => URL.revokeObjectURL(url));
     };
   }, []);
-  function updateSettings(patch: Partial<PreviewSettings>) {
+  function updateSettings(
+    patch: Partial<PreviewSettings>,
+    surface: "side" | "hood" = "side",
+  ) {
     const previousSettings = latestSaved.current[slug] ?? defaultSettings(slug);
-    const next = { ...previousSettings, ...patch };
-    if (previousSettings.image && previousSettings.image !== next.image) {
-      URL.revokeObjectURL(previousSettings.image);
-      imageUrls.current.delete(previousSettings.image);
+    const next =
+      surface === "hood"
+        ? {
+            ...previousSettings,
+            vehicleHood: {
+              ...(previousSettings.vehicleHood ??
+                defaultSettings(slug).vehicleHood!),
+              ...patch,
+            },
+          }
+        : { ...previousSettings, ...patch };
+    const previousImages = [
+      previousSettings.image,
+      previousSettings.vehicleHood?.image,
+    ];
+    const nextImages = new Set([next.image, next.vehicleHood?.image]);
+    for (const url of previousImages) {
+      if (url && !nextImages.has(url)) {
+        URL.revokeObjectURL(url);
+        imageUrls.current.delete(url);
+      }
     }
-    if (next.image) imageUrls.current.add(next.image);
+    for (const url of nextImages) {
+      if (url) imageUrls.current.add(url);
+    }
     latestSaved.current = { ...latestSaved.current, [slug]: next };
     setSaved((previous) => ({ ...previous, [slug]: next }));
   }
@@ -67,12 +89,15 @@ export default function ProductPreview({ slug }: Props) {
 
 function PreviewEditor({
   slug,
-  settings,
+  settings: allSettings,
   onChange,
 }: Props & {
   slug: string;
   settings: PreviewSettings;
-  onChange: (settings: Partial<PreviewSettings>) => void;
+  onChange: (
+    settings: Partial<PreviewSettings>,
+    surface?: "side" | "hood",
+  ) => void;
 }) {
   const uid = useId().replace(/:/g, "");
   const previewRef = useRef<HTMLElement>(null);
@@ -85,13 +110,30 @@ function PreviewEditor({
   const [inView, setInView] = useState(false);
   const [pageVisible, setPageVisible] = useState(true);
   const [exploded, setExploded] = useState(false);
+  const [vehicleSurface, setVehicleSurface] = useState<"side" | "hood">("side");
+  const isVehicle = slug === "vehicle-branding";
+  const settings =
+    isVehicle && vehicleSurface === "hood"
+      ? (allSettings.vehicleHood ?? defaultSettings(slug).vehicleHood!)
+      : allSettings;
   const [uploadError, setUploadError] = useState("");
-  const [uploadMeta, setUploadMeta] = useState<ArtworkMeta | null>(null);
+  const [uploadMetadata, setUploadMetadata] = useState<
+    Partial<Record<"side" | "hood", ArtworkMeta | null>>
+  >({});
+  const uploadMeta = uploadMetadata[vehicleSurface];
+  const setUploadMeta = (meta: ArtworkMeta | null) =>
+    setUploadMetadata((previous) => ({ ...previous, [vehicleSurface]: meta }));
   const [decoding, setDecoding] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [autoPlayed, setAutoPlayed] = useState(false);
   const fieldId = (name: string) => `${uid}-${name}`;
-  const sceneProps: SceneProps = { slug, settings, step, exploded, id: uid };
+  const sceneProps: SceneProps = {
+    slug,
+    settings: allSettings,
+    step,
+    exploded,
+    id: uid,
+  };
   const widthCm = Math.round((settings.width / 240) * config.dimensions[0]);
   const heightCm = Math.round((settings.height / 100) * config.dimensions[1]);
 
@@ -136,7 +178,7 @@ function PreviewEditor({
   }, [playing, step, inView, pageVisible]);
 
   function update(patch: Partial<PreviewSettings>) {
-    onChange(patch);
+    onChange(patch, isVehicle ? vehicleSurface : "side");
     setAutoPlayed(true);
     setPlaying(false);
     setStep(3);
@@ -194,9 +236,21 @@ function PreviewEditor({
     uploadVersion.current += 1;
     setDecoding(false);
     setUploadError("");
-    setUploadMeta(null);
+    setUploadMetadata({});
     setExploded(false);
-    update(defaultSettings(slug));
+    onChange(defaultSettings(slug));
+    setAutoPlayed(true);
+    setPlaying(false);
+    setStep(3);
+  }
+
+  function selectVehicleSurface(surface: "side" | "hood") {
+    // An image still decoding belongs to the previously selected surface.
+    uploadVersion.current += 1;
+    setDecoding(false);
+    setUploadError("");
+    setDragging(false);
+    setVehicleSurface(surface);
   }
 
   return (
@@ -234,7 +288,7 @@ function PreviewEditor({
             data-exploded={exploded}
           >
             <title id={fieldId("scene-title")}>
-              {`${entry.title}: ${settings.text || "без надписи"}. ${config.steps[step]}${exploded ? ". Слои разнесены" : ""}.`}
+              {`${entry.title}: ${allSettings.text || "без надписи"}.${isVehicle ? ` Капот: ${allSettings.vehicleHood?.text || "без надписи"}.` : ""} ${config.steps[step]}${exploded ? ". Слои разнесены" : ""}.`}
             </title>
             <defs>
               <filter
@@ -327,6 +381,59 @@ function PreviewEditor({
         </div>
         <div className="preview-controls">
           <p className="preview-hint">{config.hint}</p>
+          {isVehicle && (
+            <fieldset className="preview-vehicle-zones">
+              <legend>Зона нанесения</legend>
+              <div className="preview-artwork-fit">
+                {(
+                  [
+                    ["side", "Весь борт"],
+                    ["hood", "Капот"],
+                  ] as const
+                ).map(([surface, label]) => (
+                  <button
+                    key={surface}
+                    type="button"
+                    aria-pressed={vehicleSurface === surface}
+                    onClick={() => selectVehicleSurface(surface)}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+              <p className="preview-zone-note">
+                {vehicleSurface === "side"
+                  ? "Макет занимает весь борт. Включите окна, чтобы продолжить графику на боковом остеклении."
+                  : "Отдельный макет на наклонной поверхности капота. Борт сохраняет своё оформление."}
+              </p>
+              <label className="preview-light">
+                <input
+                  type="checkbox"
+                  checked={settings.enabled !== false}
+                  onChange={(event) =>
+                    update({ enabled: event.target.checked })
+                  }
+                />
+                <span>
+                  {vehicleSurface === "side"
+                    ? "Показывать на борту"
+                    : "Показывать на капоте"}
+                </span>
+              </label>
+              {vehicleSurface === "side" && (
+                <label className="preview-light">
+                  <input
+                    type="checkbox"
+                    checked={settings.includeWindows === true}
+                    onChange={(event) =>
+                      update({ includeWindows: event.target.checked })
+                    }
+                  />
+                  <span>С окнами</span>
+                </label>
+              )}
+            </fieldset>
+          )}
           {slug !== "metal-fabrication" && (
             <div className="preview-field">
               <label htmlFor={fieldId("text")}>
@@ -578,10 +685,35 @@ function PreviewEditor({
               </button>
             ))}
           </fieldset>
+          {isVehicle && (
+            <button
+              type="button"
+              className="preview-fill-surface"
+              onClick={() =>
+                update({
+                  width: 240,
+                  height: 100,
+                  imageFit: "cover",
+                  imageScale: 100,
+                  imageOffsetX: 0,
+                  imageOffsetY: 0,
+                  imageRotation: 0,
+                  enabled: true,
+                })
+              }
+            >
+              На всю поверхность
+            </button>
+          )}
           <div className="preview-dimensions">
             <div className="preview-field">
               <label htmlFor={fieldId("width")}>
-                Ширина<output htmlFor={fieldId("width")}>{widthCm} см</output>
+                Ширина
+                <output htmlFor={fieldId("width")}>
+                  {isVehicle
+                    ? `${Math.round((settings.width / 240) * 100)}%`
+                    : `${widthCm} см`}
+                </output>
               </label>
               <input
                 id={fieldId("width")}
@@ -593,12 +725,19 @@ function PreviewEditor({
                 onChange={(event) =>
                   update({ width: Number(event.target.value) })
                 }
-                aria-valuetext={`${widthCm} сантиметров`}
+                aria-valuetext={
+                  isVehicle
+                    ? `${Math.round((settings.width / 240) * 100)} процентов поверхности`
+                    : `${widthCm} сантиметров`
+                }
               />
             </div>
             <div className="preview-field">
               <label htmlFor={fieldId("height")}>
-                Высота<output htmlFor={fieldId("height")}>{heightCm} см</output>
+                Высота
+                <output htmlFor={fieldId("height")}>
+                  {isVehicle ? `${settings.height}%` : `${heightCm} см`}
+                </output>
               </label>
               <input
                 id={fieldId("height")}
@@ -610,7 +749,11 @@ function PreviewEditor({
                 onChange={(event) =>
                   update({ height: Number(event.target.value) })
                 }
-                aria-valuetext={`${heightCm} сантиметров`}
+                aria-valuetext={
+                  isVehicle
+                    ? `${settings.height} процентов поверхности`
+                    : `${heightCm} сантиметров`
+                }
               />
             </div>
           </div>
@@ -625,8 +768,9 @@ function PreviewEditor({
             </label>
           )}
           <p className="preview-scale-note">
-            Размеры условные — для сравнения пропорций. Точную конструкцию
-            подбираем после замера.
+            {isVehicle
+              ? "100% — вся выбранная поверхность. Макет обрезается по контуру кузова. Точную раскладку согласуем по модели автомобиля."
+              : "Размеры условные — для сравнения пропорций. Точную конструкцию подбираем после замера."}
           </p>
           <div className="preview-control-footer">
             <button type="button" className="preview-reset" onClick={reset}>

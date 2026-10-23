@@ -1,11 +1,15 @@
+import type { ReactNode } from "react";
 import { iso, isoPoints, IsoBox, IsoLine, IsoPlane } from "./isometric";
+import {
+  vehicleDriverWindow,
+  vehicleHoodOutline,
+  vehiclePassengerWindows,
+  vehicleSideProfile,
+} from "./VehicleArtwork";
 
 const wheelXs = [-96, 108];
 const wheelZ = 63;
 const wheelRadius = 18;
-const sideProfile =
-  "M4 102V21Q4 9 16 8H199Q215 8 225 16L258 51 287 64Q301 69 302 79L303 96Q303 102 294 102H275A22 22 0 0 0 231 102H71A22 22 0 0 0 27 102Z";
-
 const p = (x: number, y: number, z: number) => iso(x, y, z).join(" ");
 
 function Wheel({ x, y }: { x: number; y: number }) {
@@ -63,7 +67,15 @@ function Wheel({ x, y }: { x: number; y: number }) {
 /** Rounded passenger minibus: a neutral white body and one uninterrupted dark side window band. */
 export default function VehicleGeometry({
   id = "minibus",
-}: { id?: string } = {}) {
+  sideArtwork,
+  hoodArtwork,
+  sideIncludesWindows = false,
+}: {
+  id?: string;
+  sideArtwork?: ReactNode;
+  hoodArtwork?: ReactNode;
+  sideIncludesWindows?: boolean;
+} = {}) {
   const roofFill = `url(#${id}-minibus-roof)`;
   const bodyFill = `url(#${id}-minibus-body)`;
   return (
@@ -83,7 +95,7 @@ export default function VehicleGeometry({
         <Wheel key={x} x={x} y={-38} />
       ))}
       <IsoPlane x={-145} y={-43} z={165}>
-        <path d={sideProfile} fill="#bac1be" />
+        <path d={vehicleSideProfile} fill="#bac1be" />
       </IsoPlane>
 
       <path
@@ -104,10 +116,8 @@ export default function VehicleGeometry({
         d={`M${p(80, -43, 149)}L${p(113, -43, 114)}L${p(113, 44, 114)}L${p(80, 44, 149)}Z`}
         fill="#e3e5e0"
       />
-      <path
-        d={`M${p(113, -43, 114)}Q${p(144, -43, 105)} ${p(157, -38, 86)}L${p(157, 38, 86)}Q${p(144, 44, 105)} ${p(113, 44, 114)}Z`}
-        fill="#e9eae5"
-      />
+      <path data-vehicle-part="hood" d={vehicleHoodOutline} fill="#e9eae5" />
+      {hoodArtwork}
       <path
         d={`M${p(157, -38, 86)}Q${p(163, 0, 87)} ${p(157, 38, 86)}L${p(158, 38, 67)}Q${p(163, 0, 62)} ${p(158, -38, 67)}Z`}
         fill="#d6dbd5"
@@ -139,21 +149,42 @@ export default function VehicleGeometry({
       <IsoPlane x={-145} y={44} z={165}>
         <path
           data-vehicle-part="body-with-wheel-arches"
-          d={sideProfile}
+          d={vehicleSideProfile}
           fill={bodyFill}
           stroke="#bdc5bf"
           strokeWidth=".65"
           strokeLinejoin="round"
         />
+        <g data-vehicle-part="base-side-glazing" fill="#262a28">
+          <path d={vehiclePassengerWindows} />
+          <path d={vehicleDriverWindow} />
+        </g>
+      </IsoPlane>
+      {sideArtwork}
+      <IsoPlane x={-145} y={44} z={165}>
         <path
           data-vehicle-part="panoramic-side-windows"
-          d="M14 20Q14 17 18 17H177Q181 17 181 21V41Q181 45 177 45H18Q14 45 14 41Z"
-          fill="#262a28"
+          d={vehiclePassengerWindows}
+          fill={sideIncludesWindows ? "none" : "#262a28"}
+          stroke={sideIncludesWindows ? "#58635a" : "none"}
+          strokeWidth=".65"
         />
         <path
-          d="M207 23 216 25 246 55Q248 58 244 58H210Q206 58 206 55Z"
-          fill="#252a27"
+          data-vehicle-part="driver-side-window"
+          d={vehicleDriverWindow}
+          fill={sideIncludesWindows ? "none" : "#252a27"}
+          stroke={sideIncludesWindows ? "#58635a" : "none"}
+          strokeWidth=".65"
         />
+        {sideIncludesWindows ? (
+          <path
+            d="M21 23H169M212 30L231 50"
+            fill="none"
+            stroke="#e5eee8"
+            strokeWidth=".8"
+            opacity=".42"
+          />
+        ) : null}
         <path
           d="M201 22V91Q201 96 207 96H220M258 59V78"
           stroke="#b0bab2"

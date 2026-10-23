@@ -1,4 +1,4 @@
-export type PreviewSettings = {
+export type ArtworkSettings = {
   text: string;
   color: string;
   width: number;
@@ -10,6 +10,12 @@ export type PreviewSettings = {
   imageOffsetY?: number;
   imageRotation?: number;
   lit: boolean;
+  enabled?: boolean;
+  includeWindows?: boolean;
+};
+
+export type PreviewSettings = ArtworkSettings & {
+  vehicleHood?: ArtworkSettings;
 };
 
 export type SceneProps = {

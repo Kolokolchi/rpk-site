@@ -1,3 +1,5 @@
+import type { PreviewSettings } from "./types";
+
 export type PreviewConfig = {
   family: "facade" | "object" | "production";
   text: string;
@@ -155,7 +157,7 @@ export const previewConfigs: Record<string, PreviewConfig> = {
   "vehicle-branding": {
     family: "object",
     text: "ВАШ БРЕНД",
-    hint: "Примерьте логотип или фирменную графику на борту микроавтобуса — под окнами и над колёсными арками.",
+    hint: "Оформите весь борт и капот. У каждой зоны — свой текст, изображение и настройки размещения.",
     dimensions: [240, 50],
     steps: ["Автомобиль", "Подготовка борта", "Плёнка", "Готовое оформление"],
     image: true,
@@ -286,7 +288,7 @@ export const previewConfigs: Record<string, PreviewConfig> = {
   },
 };
 
-export const defaultSettings = (slug: string) => ({
+export const defaultSettings = (slug: string): PreviewSettings => ({
   text: previewConfigs[slug].text,
   color: "#ff8a00",
   width: 240,
@@ -298,4 +300,24 @@ export const defaultSettings = (slug: string) => ({
   imageOffsetY: 0,
   imageRotation: 0,
   lit: true,
+  ...(slug === "vehicle-branding"
+    ? {
+        enabled: true,
+        includeWindows: false,
+        vehicleHood: {
+          text: previewConfigs[slug].text,
+          color: "#ff8a00",
+          width: 240,
+          height: 100,
+          image: null as string | null,
+          imageFit: "contain" as const,
+          imageScale: 100,
+          imageOffsetX: 0,
+          imageOffsetY: 0,
+          imageRotation: 0,
+          lit: true,
+          enabled: true,
+        },
+      }
+    : {}),
 });
